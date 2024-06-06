@@ -1,0 +1,13 @@
+﻿NUOVA MIGRATION
+add-migration Initial	-Context DivisaContext -StartupProject BancaSempione.Presentation.Divise.WebApi -Project BancaSempione.Infrastructure.Database -Output Migrations
+
+
+UPGRADE
+update-database				-Context FamContext -StartupProject Fam.WebAPi -Project Fam.Data
+
+DOWNGRADE
+Per eseguire il downgrade di tutte le migration
+Update-Database –Migration 0 -Context FamContext -StartupProject Fam.WebAPi
+
+
+

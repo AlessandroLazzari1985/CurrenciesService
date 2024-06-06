@@ -1,0 +1,6 @@
+@BancaSempione.Presentation.Divise.WebApi_HostAddress = http://localhost:5169
+
+GET {{BancaSempione.Presentation.Divise.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
