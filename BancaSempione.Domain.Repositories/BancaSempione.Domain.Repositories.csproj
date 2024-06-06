@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Apsoft.Domain.Repositories\Apsoft.Domain.Repositories.csproj" />
+    <ProjectReference Include="..\BancaSempione.Domain.Boss\BancaSempione.Domain.Boss.csproj" />
+    <ProjectReference Include="..\BancaSempione.Domain.Divise\BancaSempione.Domain.Divise.csproj" />
+  </ItemGroup>
+
+</Project>
