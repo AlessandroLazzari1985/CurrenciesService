@@ -109,7 +109,7 @@ public class DivisaRepository(DivisaRecordRepository divisaRecordRepository) : I
     private static Divisa ToDomain(DivisaRecord record)
     {
         return new Divisa(
-            record.DivisaId,
+            record.DivisaRecordId,
             record.AlphabeticCode,
             record.NumericCode,
             record.Name,
@@ -127,7 +127,7 @@ public class DivisaRepository(DivisaRecordRepository divisaRecordRepository) : I
     {
         return new DivisaRecord
         {
-            DivisaId = divisa.DivisaId,
+            DivisaRecordId = divisa.DivisaId,
             AlphabeticCode = divisa.AlphabeticCode,
             NumericCode = divisa.NumericCode,
             Name = divisa.Name,

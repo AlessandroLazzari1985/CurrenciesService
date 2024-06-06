@@ -1,10 +1,8 @@
-﻿using BancaSempione.Domain.Divise;
-
-namespace BancaSempione.Infrastructure.Database.Model
+﻿namespace BancaSempione.Infrastructure.Database.Model
 {
     public class DivisaRecord
     {
-        public int DivisaId { get; set; }
+        public int DivisaRecordId { get; set; }
         public string AlphabeticCode { get; set; }
         public int NumericCode { get; set; }
         public string? Name { get; set; }

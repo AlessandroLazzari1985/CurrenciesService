@@ -32,8 +32,8 @@ public class DivisaImporter(
     {
         // Leggiamo le divise di Boss e le dividiamo per tipo
         var diviseBoss = divisaBossRepository.Items
-            .Where(x => x.UATIPUNI == TipoDivisa.Divise.Code ||
-                        x.UATIPUNI == TipoDivisa.MetalliLingottiContabili.Code)
+            .Where(x => x.UATIPUNI == TipoDivisa.Divise.Id ||
+                        x.UATIPUNI == TipoDivisa.MetalliLingottiContabili.Id)
             .ToList();
 
         // non tutte le divise di Boss sono delle currency reali della ISO4217.
@@ -46,8 +46,8 @@ public class DivisaImporter(
 
         // Le currency ISO 4217
         var diviseEntrateNellEuro = DiviseEntrateNellEuro();
-        var gruppoDivisaById = GruppoDivisa.GetAll().ToDictionary(x => x.Code);
-        var tipoDivisaById = TipoDivisa.GetAll().ToDictionary(x => x.Code);
+        var gruppoDivisaById = GruppoDivisa.GetAll().ToDictionary(x => x.Id);
+        var tipoDivisaById = TipoDivisa.GetAll().ToDictionary(x => x.Id);
         var currencies = currencyRepository.Items.ToList().ToDictionary(x => x.AlphabeticCode);
 
         var diviseResult = diviseBoss
@@ -118,8 +118,8 @@ public class DivisaImporter(
             rounding: currencyResult.Value.Rounding,
             isDivisaIn: isDivisaIn,
             taglio: taglioResult.Value,
-            gruppoDivisaCode: gruppoDivisaResult.Value.Code,
-            tipoDivisaCode: tipoDivisaResult.Value.Code);
+            gruppoDivisaCode: gruppoDivisaResult.Value.Id,
+            tipoDivisaCode: tipoDivisaResult.Value.Id);
     }
 
     private Result<Currency> GetCurrency(DivisaBoss divisaBoss, Dictionary<string, Currency> currenciesByIsoCode)

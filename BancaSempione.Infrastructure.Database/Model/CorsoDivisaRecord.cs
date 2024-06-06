@@ -2,6 +2,7 @@
 {
     public class CorsoDivisaRecord
     {
+        public Guid CorsoDivisaRecordId { get; set; }
         public int BaseDivisaId { get; set; }
         public int CounterDivisaId { get; set; }
         public decimal ExchangeRate { get; set; }        // Tasso di cambio. Valore di riferimento o media tra Bid e Ask
