@@ -26,9 +26,9 @@ public class DivisaRecordConfiguration : IEntityTypeConfiguration<DivisaRecord>
 
         builder.Property(e => e.Taglio).HasPrecision(18, 2);        // Vale 1, 100 o 1000. L'ho lasciato con 2 decimali per essere aperto a fantasie future
 
-        builder.Property(e => e.GruppoDivisaCode).IsRequired();
+        builder.Property(e => e.GruppoDivisaId).IsRequired();
 
-        builder.Property(e => e.TipoDivisaCode).IsRequired().HasMaxLength(2);
+        builder.Property(e => e.TipoDivisaId).IsRequired().HasMaxLength(2);
 
         builder.HasIndex(e => e.AlphabeticCode).IsUnique();
         builder.HasIndex(e => e.NumericCode).IsUnique();

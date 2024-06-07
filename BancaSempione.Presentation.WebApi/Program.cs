@@ -17,6 +17,7 @@ builder.Services
 
     // Infrastructure
     .Register_BancaSempione_Infrastructure_Repositories()
+    .Register_BancaSempione_Infrastructure_Logging()
     .Register_BancaSempione_Infrastructure_Database(appSettings!.ConnectionStrings.DefaultConnection);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

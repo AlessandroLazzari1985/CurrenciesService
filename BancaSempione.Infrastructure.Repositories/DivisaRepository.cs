@@ -118,8 +118,8 @@ public class DivisaRepository(DivisaRecordRepository divisaRecordRepository) : I
             record.Rounding,
             record.IsDivisaIn,
             record.Taglio,
-            record.GruppoDivisaCode,
-            record.TipoDivisaCode
+            record.GruppoDivisaId,
+            record.TipoDivisaId
         );
     }
 
@@ -136,8 +136,8 @@ public class DivisaRepository(DivisaRecordRepository divisaRecordRepository) : I
             Rounding = divisa.Rounding,
             IsDivisaIn = divisa.IsDivisaIn,
             Taglio = divisa.Taglio,
-            GruppoDivisaCode = divisa.GruppoDivisaId,
-            TipoDivisaCode = divisa.TipoDivisaId
+            GruppoDivisaId = divisa.GruppoDivisaId,
+            TipoDivisaId = divisa.TipoDivisaId
         };
     }
 }

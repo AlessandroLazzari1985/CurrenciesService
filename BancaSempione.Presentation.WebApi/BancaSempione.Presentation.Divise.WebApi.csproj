@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BancaSempione.Infrastructure.Database\BancaSempione.Infrastructure.Database.csproj" />
+    <ProjectReference Include="..\BancaSempione.Infrastructure.Logging\BancaSempione.Infrastructure.Logging.csproj" />
     <ProjectReference Include="..\BancaSempione.Infrastructure.Repositories\BancaSempione.Infrastructure.Repositories.csproj" />
   </ItemGroup>
 

@@ -3,7 +3,7 @@
 public class DivisaRecord
 {
     public int DivisaRecordId { get; set; }
-    public string AlphabeticCode { get; set; }
+    public string AlphabeticCode { get; set; } = null!;
     public int NumericCode { get; set; }
     public string? Name { get; set; }
     public string? Symbol { get; set; }
@@ -11,6 +11,6 @@ public class DivisaRecord
     public int Rounding { get; set; }
     public bool IsDivisaIn { get; set; }
     public decimal Taglio { get; set; }
-    public int GruppoDivisaCode { get; set; }
-    public string TipoDivisaCode { get; set; }
+    public int GruppoDivisaId { get; set; }
+    public string TipoDivisaId { get; set; } = null!;
 }

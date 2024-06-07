@@ -1,6 +1,8 @@
-﻿namespace BancaSempione.Presentation.Divise.WebApi;
+﻿using BancaSempione.Infrastructure.Logging.Interfaces;
 
-public class AppSettings
+namespace BancaSempione.Presentation.Divise.WebApi;
+
+public class AppSettings : ISerilogConfiguration
 {
     public ConnectionStrings ConnectionStrings { get; set; } = new();
 }

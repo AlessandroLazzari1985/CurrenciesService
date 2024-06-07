@@ -27,21 +27,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F6D4AD12
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{D80C928F-7DF5-4707-9FB6-B6362017A1FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BancaSempione.Domain.Divise", "BancaSempione.Domain.Divise\BancaSempione.Domain.Divise.csproj", "{C5F0EB04-CA2A-4894-BE43-2DFA69840863}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BancaSempione.Domain.Divise", "BancaSempione.Domain.Divise\BancaSempione.Domain.Divise.csproj", "{C5F0EB04-CA2A-4894-BE43-2DFA69840863}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BancaSempione.Domain.Repositories", "BancaSempione.Domain.Repositories\BancaSempione.Domain.Repositories.csproj", "{D64EA11B-7110-46C5-9C6E-0FEE105E5A97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BancaSempione.Domain.Repositories", "BancaSempione.Domain.Repositories\BancaSempione.Domain.Repositories.csproj", "{D64EA11B-7110-46C5-9C6E-0FEE105E5A97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apsoft.Domain.Entities", "Apsoft.Domain.Entities\Apsoft.Domain.Entities.csproj", "{FCE9B4E9-868B-47C4-BBFA-18C849248D51}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apsoft.Domain.Entities", "Apsoft.Domain.Entities\Apsoft.Domain.Entities.csproj", "{FCE9B4E9-868B-47C4-BBFA-18C849248D51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BancaSempione.Domain.Boss", "BancaSempione.Domain.Boss\BancaSempione.Domain.Boss.csproj", "{A01879F6-9DDE-48DC-BA6E-1294E7C600FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BancaSempione.Domain.Boss", "BancaSempione.Domain.Boss\BancaSempione.Domain.Boss.csproj", "{A01879F6-9DDE-48DC-BA6E-1294E7C600FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BancaSempione.Application.Provider.Boss", "BancaSempione.Application.Provider.Boss\BancaSempione.Application.Provider.Boss.csproj", "{8021F87C-2865-4697-BBD6-513EFB7D0CFB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BancaSempione.Application.Provider.Boss", "BancaSempione.Application.Provider.Boss\BancaSempione.Application.Provider.Boss.csproj", "{8021F87C-2865-4697-BBD6-513EFB7D0CFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BancaSempione.Infrastructure.Database", "BancaSempione.Infrastructure.Database\BancaSempione.Infrastructure.Database.csproj", "{D5CBE78C-2AFA-47A4-AAF7-3D52D33EFCCC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BancaSempione.Infrastructure.Database", "BancaSempione.Infrastructure.Database\BancaSempione.Infrastructure.Database.csproj", "{D5CBE78C-2AFA-47A4-AAF7-3D52D33EFCCC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BancaSempione.Infrastructure.Repositories", "BancaSempione.Infrastructure.Repositories\BancaSempione.Infrastructure.Repositories.csproj", "{76C196FB-EDEA-4689-8F5E-F66E897C4DB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BancaSempione.Infrastructure.Repositories", "BancaSempione.Infrastructure.Repositories\BancaSempione.Infrastructure.Repositories.csproj", "{76C196FB-EDEA-4689-8F5E-F66E897C4DB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BancaSempione.Presentation.Divise.WebApi", "BancaSempione.Presentation.WebApi\BancaSempione.Presentation.Divise.WebApi.csproj", "{4192B1D9-EFC2-4BE8-B7D7-1D10ECC1E144}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BancaSempione.Presentation.Divise.WebApi", "BancaSempione.Presentation.WebApi\BancaSempione.Presentation.Divise.WebApi.csproj", "{4192B1D9-EFC2-4BE8-B7D7-1D10ECC1E144}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BancaSempione.Infrastructure.Logging", "BancaSempione.Infrastructure.Logging\BancaSempione.Infrastructure.Logging.csproj", "{0CD62050-B2AC-48AE-BE6C-5AC436FF6629}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -105,6 +107,10 @@ Global
 		{4192B1D9-EFC2-4BE8-B7D7-1D10ECC1E144}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4192B1D9-EFC2-4BE8-B7D7-1D10ECC1E144}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4192B1D9-EFC2-4BE8-B7D7-1D10ECC1E144}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CD62050-B2AC-48AE-BE6C-5AC436FF6629}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CD62050-B2AC-48AE-BE6C-5AC436FF6629}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CD62050-B2AC-48AE-BE6C-5AC436FF6629}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CD62050-B2AC-48AE-BE6C-5AC436FF6629}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -123,6 +129,7 @@ Global
 		{D5CBE78C-2AFA-47A4-AAF7-3D52D33EFCCC} = {D0BFF534-A238-4728-B9D2-A9F1ED84F2A1}
 		{76C196FB-EDEA-4689-8F5E-F66E897C4DB9} = {D0BFF534-A238-4728-B9D2-A9F1ED84F2A1}
 		{4192B1D9-EFC2-4BE8-B7D7-1D10ECC1E144} = {73544EDC-1556-4EE0-8E8B-CE3E6043584E}
+		{0CD62050-B2AC-48AE-BE6C-5AC436FF6629} = {D0BFF534-A238-4728-B9D2-A9F1ED84F2A1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E88CA819-AC2E-441E-A896-F5EBEC5FE4D3}
