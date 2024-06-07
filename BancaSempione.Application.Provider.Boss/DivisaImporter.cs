@@ -118,8 +118,8 @@ public class DivisaImporter(
             rounding: currencyResult.Value.Rounding,
             isDivisaIn: isDivisaIn,
             taglio: taglioResult.Value,
-            gruppoDivisaCode: gruppoDivisaResult.Value.Id,
-            tipoDivisaCode: tipoDivisaResult.Value.Id);
+            gruppoDivisaId: gruppoDivisaResult.Value.Id,
+            tipoDivisaId: tipoDivisaResult.Value.Id);
     }
 
     private Result<Currency> GetCurrency(DivisaBoss divisaBoss, Dictionary<string, Currency> currenciesByIsoCode)

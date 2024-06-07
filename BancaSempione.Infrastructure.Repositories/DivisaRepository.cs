@@ -136,8 +136,8 @@ public class DivisaRepository(DivisaRecordRepository divisaRecordRepository) : I
             Rounding = divisa.Rounding,
             IsDivisaIn = divisa.IsDivisaIn,
             Taglio = divisa.Taglio,
-            GruppoDivisaCode = divisa.GruppoDivisaCode,
-            TipoDivisaCode = divisa.TipoDivisaCode
+            GruppoDivisaCode = divisa.GruppoDivisaId,
+            TipoDivisaCode = divisa.TipoDivisaId
         };
     }
 }

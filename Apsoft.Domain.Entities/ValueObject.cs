@@ -1,70 +1,69 @@
 ﻿using System.Reflection;
 
-namespace Apsoft.Domain.Entities
+namespace Apsoft.Domain.Entities;
+
+public abstract class ValueObject<T> : IEquatable<ValueObject<T>>
+    where T : ValueObject<T>
 {
-    public abstract class ValueObject<T> : IEquatable<ValueObject<T>>
-        where T : ValueObject<T>
-    {
-        protected abstract IEnumerable<object> GetEqualityComponents();
+    protected abstract IEnumerable<object> GetEqualityComponents();
         
-        public static List<T> GetAll()
-        {
-            var instances = new List<T>();
-            var fields = typeof(T).GetFields(BindingFlags.Public | BindingFlags.Static);
+    public static List<T> GetAll()
+    {
+        var instances = new List<T>();
+        var fields = typeof(T).GetFields(BindingFlags.Public | BindingFlags.Static);
 
-            foreach (var field in fields)
+        foreach (var field in fields)
+        {
+            if (field.FieldType == typeof(T))
             {
-                if (field.FieldType == typeof(T))
-                {
-                    var instance = (T)field.GetValue(null);
-                    instances.Add(instance);
-                }
+                var instance = (T)field.GetValue(null);
+                instances.Add(instance);
             }
-
-            return instances;
         }
 
-        #region IEquatable
+        return instances;
+    }
 
-        public override bool Equals(object? obj)
-        {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
-            return Equals((ValueObject<T>)obj);
-        }
+    #region IEquatable
 
-        public bool Equals(ValueObject<T>? other)
-        {
-            if (ReferenceEquals(null, other)) return false;
-            return GetEqualityComponents().SequenceEqual(other.GetEqualityComponents());
-        }
+    public override bool Equals(object? obj)
+    {
+        if (ReferenceEquals(null, obj)) return false;
+        if (ReferenceEquals(this, obj)) return true;
+        if (obj.GetType() != this.GetType()) return false;
+        return Equals((ValueObject<T>)obj);
+    }
 
-        public override int GetHashCode()
-        {
-            return GetEqualityComponents()
-                .Aggregate(new HashCode(), (hashCode, obj) => {
-                    hashCode.Add(obj);
-                    return hashCode;
-                }).ToHashCode();
-        }
+    public bool Equals(ValueObject<T>? other)
+    {
+        if (ReferenceEquals(null, other)) return false;
+        return GetEqualityComponents().SequenceEqual(other.GetEqualityComponents());
+    }
 
-        #endregion
+    public override int GetHashCode()
+    {
+        return GetEqualityComponents()
+            .Aggregate(new HashCode(), (hashCode, obj) => {
+                hashCode.Add(obj);
+                return hashCode;
+            }).ToHashCode();
+    }
 
-        public static bool operator ==(ValueObject<T> a, ValueObject<T> b)
-        {
-            if (ReferenceEquals(a, null) && ReferenceEquals(b, null))
-                return true;
+    #endregion
 
-            if (ReferenceEquals(a, null) || ReferenceEquals(b, null))
-                return false;
+    public static bool operator ==(ValueObject<T> a, ValueObject<T> b)
+    {
+        if (ReferenceEquals(a, null) && ReferenceEquals(b, null))
+            return true;
 
-            return a.Equals(b);
-        }
+        if (ReferenceEquals(a, null) || ReferenceEquals(b, null))
+            return false;
 
-        public static bool operator !=(ValueObject<T> a, ValueObject<T> b)
-        {
-            return !(a == b);
-        }
+        return a.Equals(b);
+    }
+
+    public static bool operator !=(ValueObject<T> a, ValueObject<T> b)
+    {
+        return !(a == b);
     }
 }

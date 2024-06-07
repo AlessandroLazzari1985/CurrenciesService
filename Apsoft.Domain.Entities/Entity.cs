@@ -1,51 +1,50 @@
-﻿namespace Apsoft.Domain.Entities
+﻿namespace Apsoft.Domain.Entities;
+
+public abstract class Entity : IEquatable<Entity>
 {
-    public abstract class Entity : IEquatable<Entity>
+    public Guid Id { get; protected set; }
+
+    #region Operators
+    public static bool operator ==(Entity a, Entity b)
     {
-        public Guid Id { get; protected set; }
+        if (ReferenceEquals(a, null) && ReferenceEquals(b, null))
+            return true;
 
-        #region Operators
-        public static bool operator ==(Entity a, Entity b)
-        {
-            if (ReferenceEquals(a, null) && ReferenceEquals(b, null))
-                return true;
+        if (ReferenceEquals(a, null) || ReferenceEquals(b, null))
+            return false;
 
-            if (ReferenceEquals(a, null) || ReferenceEquals(b, null))
-                return false;
-
-            return a.Equals(b);
-        }
-
-        public static bool operator !=(Entity a, Entity b)
-        {
-            return !(a == b);
-        }
-
-        #endregion
-
-        #region IEquatable<Entity>
-
-        public bool Equals(Entity? other)
-        {
-            if (ReferenceEquals(null, other)) return false;
-            if (ReferenceEquals(this, other)) return true;
-            return Id == other.Id;
-        }
-
-        public override bool Equals(object? obj)
-        {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
-            return Equals((Entity)obj);
-        }
-
-        public override int GetHashCode()
-        {
-            return Id.GetHashCode();
-        }
-
-        #endregion
-
+        return a.Equals(b);
     }
+
+    public static bool operator !=(Entity a, Entity b)
+    {
+        return !(a == b);
+    }
+
+    #endregion
+
+    #region IEquatable<Entity>
+
+    public bool Equals(Entity? other)
+    {
+        if (ReferenceEquals(null, other)) return false;
+        if (ReferenceEquals(this, other)) return true;
+        return Id == other.Id;
+    }
+
+    public override bool Equals(object? obj)
+    {
+        if (ReferenceEquals(null, obj)) return false;
+        if (ReferenceEquals(this, obj)) return true;
+        if (obj.GetType() != this.GetType()) return false;
+        return Equals((Entity)obj);
+    }
+
+    public override int GetHashCode()
+    {
+        return Id.GetHashCode();
+    }
+
+    #endregion
+
 }
