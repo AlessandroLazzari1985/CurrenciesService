@@ -2,7 +2,7 @@
 using Serilog.Sinks.Email;
 using System.Net;
 
-namespace BancaSempione.Infrastructure.Logging;
+namespace BancaSempione.Infrastructure.Logging.Mails;
 
 internal class MyHtmlBodyFormatter : IBatchTextFormatter
 {

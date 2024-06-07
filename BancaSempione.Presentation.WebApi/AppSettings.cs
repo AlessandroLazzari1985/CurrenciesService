@@ -2,9 +2,16 @@
 
 namespace BancaSempione.Presentation.Divise.WebApi;
 
-public class AppSettings : ISerilogConfiguration
+public class AppSettings
 {
     public ConnectionStrings ConnectionStrings { get; set; } = new();
+    public SerilogMails SerilogMails { get; set; } = new();
+}
+
+public record SerilogMails : ISerilogMails
+{
+    public string From { get; } = null!;
+    public List<string> To { get; } = new();
 }
 
 public class ConnectionStrings

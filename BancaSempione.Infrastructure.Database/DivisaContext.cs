@@ -27,7 +27,7 @@ public class DivisaContext(DbContextOptions<DivisaContext> option) : DbContext(o
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.HasDefaultSchema("Sempione_Currency");
+        modelBuilder.HasDefaultSchema(PublicNames.DefaltSchema);
         modelBuilder.ApplyConfiguration(new DivisaRecordConfiguration());
         modelBuilder.ApplyConfiguration(new CorsoDivisaRecordConfiguration());
         modelBuilder.ApplyConfiguration(new TipoDivisaConfiguration());

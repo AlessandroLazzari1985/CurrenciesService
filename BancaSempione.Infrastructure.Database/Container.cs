@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BancaSempione.Infrastructure.Database.Logging;
+using BancaSempione.Infrastructure.Logging.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BancaSempione.Infrastructure.Database;

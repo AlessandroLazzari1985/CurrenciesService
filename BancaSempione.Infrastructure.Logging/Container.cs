@@ -10,47 +10,49 @@ using Serilog.Sinks.MSSqlServer;
 using Serilog.Sinks.PeriodicBatching;
 using System.Collections.ObjectModel;
 using System.Data;
+using BancaSempione.Infrastructure.Logging.Mails;
 
 namespace BancaSempione.Infrastructure.Logging;
 
 public static class Container
 {
     public static IServiceCollection Register_BancaSempione_Infrastructure_Logging(
-        this IServiceCollection serviceCollection, 
-        ISerilogConfiguration serilogConfiguration)
+        this IServiceCollection serviceCollection,
+        ISerilogSqlServer serilogSqlServer,
+        ISerilogMails serilogMails)
     {
-        Log.Logger = ConfigureSerilog(serilogConfiguration).CreateLogger();
+        Log.Logger = new LoggerConfiguration()
+            .ConfigureSerilog()
+            .AddSqlServer(serilogSqlServer)
+            .AddMail(serilogMails)
+            .CreateLogger();
 
         serviceCollection.AddLogging(builder =>
         {
-            builder.SetMinimumLevel(LogLevel.Information);
+            builder.ClearProviders();                           // Rimuove i provider di logging predefiniti
+            builder.AddSerilog(Log.Logger, dispose: true);      // Aggiunge Serilog come provider
         });
 
         return serviceCollection;
     }
 
-    private static LoggerConfiguration ConfigureSerilog(ISerilogConfiguration serilogConfiguration)
+    public static LoggerConfiguration ConfigureSerilog(this LoggerConfiguration loggerConfiguration)
     {
-        var loggerConfiguration = new LoggerConfiguration()
+        loggerConfiguration 
             .Destructure.ToMaximumDepth(0)
             .Enrich.FromLogContext()
             .Enrich.WithExceptionDetails()
-            .Enrich.WithMachineName();
-
-        loggerConfiguration.MinimumLevel.Is(LogEventLevel.Information)
+            .Enrich.WithMachineName()
+            .MinimumLevel.Is(LogEventLevel.Information)
             .MinimumLevel.Override("Microsoft.EntityFrameworkCore", LogEventLevel.Warning)
             .MinimumLevel.Override("Microsoft.AspNetCore.Mvc", LogEventLevel.Warning)
             .MinimumLevel.Override("Microsoft.AspNetCore.Cors", LogEventLevel.Warning)
             .MinimumLevel.Override("Microsoft.AspNetCore.Hosting", LogEventLevel.Warning);
-
-        loggerConfiguration
-            .AddSqlServer(serilogConfiguration)
-            .AddMail(serilogConfiguration);
-
+        
         return loggerConfiguration;
     }
 
-    public static LoggerConfiguration AddSqlServer(this LoggerConfiguration loggerConfiguration, ISerilogSqlServer serilogSqlServer)
+    public static LoggerConfiguration AddSqlServer(this LoggerConfiguration loggerConfiguration, ISerilogSqlServer config)
     {
         var columnOptions = new ColumnOptions
         {
@@ -71,8 +73,8 @@ public static class Container
         };
 
         loggerConfiguration.WriteTo.MSSqlServer(
-            connectionString: serilogSqlServer.ConnectionString,
-            sinkOptions: new MSSqlServerSinkOptions { TableName = serilogSqlServer.TableName, SchemaName = serilogSqlServer.SchemaName },
+            connectionString: config.ConnectionString,
+            sinkOptions: new MSSqlServerSinkOptions { TableName = config.TableName, SchemaName = config.SchemaName },
             columnOptions: columnOptions);
 
         return loggerConfiguration;
@@ -108,6 +110,4 @@ public static class Container
 
         return loggerConfiguration;
     }
-
-
 }    
