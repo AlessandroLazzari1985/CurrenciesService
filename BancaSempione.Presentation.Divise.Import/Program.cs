@@ -10,7 +10,7 @@ var configurationRoot = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .Build();
 
-var appSettings = configurationRoot.Get<AppSettings>();
+var appSettings = configurationRoot.Get<ImportBatchAppSettings>();
 var serilogSqlServer = SerilogSqlServer.BuildWith(appSettings!.ConnectionStrings.DefaultConnection);
 
 var serviceCollection = new ServiceCollection()

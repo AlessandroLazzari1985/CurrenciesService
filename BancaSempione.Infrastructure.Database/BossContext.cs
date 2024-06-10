@@ -9,8 +9,7 @@ namespace BancaSempione.Infrastructure.Database
         public virtual DbSet<DivisaBoss> DivisaBoss { get; set; } = null!;
         public virtual DbSet<TabellaBoss> TabellaBoss { get; set; } = null!;
         public virtual DbSet<CorsoDivisaBoss> CorsoDivisaBoss { get; set; } = null!;      // TmpDivisaCorso Ogni giorno vengono scaricati i corsi divisa
-
-
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<DivisaBoss>().ToTable("TmpADUNIANA");

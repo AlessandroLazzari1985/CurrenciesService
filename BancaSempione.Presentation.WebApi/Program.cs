@@ -1,28 +1,13 @@
-using BancaSempione.Infrastructure.Database;
-using BancaSempione.Infrastructure.Database.Logging;
-using BancaSempione.Infrastructure.Logging;
-using BancaSempione.Infrastructure.Repositories;
 using BancaSempione.Presentation.Divise.WebApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Read configuration
 builder.Configuration.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-var appSettings = builder.Configuration.Get<AppSettings>();
-
-var serilogSqlServer = SerilogSqlServer.BuildWith(appSettings!.ConnectionStrings.DefaultConnection);
 
 // Add services to the container.
-builder.Services.AddSingleton(appSettings);
 builder.Services.AddControllers();
-
-builder.Services
-    // Application
-
-
-    // Infrastructure
-    .Register_BancaSempione_Infrastructure_Repositories()
-    .Register_BancaSempione_Infrastructure_Logging(serilogSqlServer, appSettings.SerilogMails)
-    .Register_BancaSempione_Infrastructure_Database(appSettings.ConnectionStrings.DefaultConnection);
+builder.Services.Register_BancaSempione_Presentation_Divise_WebApi(builder.Configuration.Get<WebApiAppSettings>()!);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -30,6 +15,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+// Middleware
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

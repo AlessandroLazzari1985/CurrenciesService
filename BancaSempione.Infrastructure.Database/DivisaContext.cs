@@ -1,5 +1,4 @@
-﻿using BancaSempione.Domain.Boss;
-using BancaSempione.Domain.Divise;
+﻿using BancaSempione.Domain.Divise;
 using BancaSempione.Infrastructure.Database.Configurations;
 using BancaSempione.Infrastructure.Database.Model;
 using Microsoft.EntityFrameworkCore;
@@ -8,12 +7,6 @@ namespace BancaSempione.Infrastructure.Database;
 
 public class DivisaContext(DbContextOptions<DivisaContext> option) : DbContext(option)
 {
-    #region Dominio Boss
-    public DbSet<DivisaBoss> DivisaBoss { get; set; } = null!;
-    public DbSet<CorsoDivisaBoss> CorsoDivisaBoss { get; set; } = null!;
-    public DbSet<TabellaBoss> TabellaBoss { get; set; } = null!;
-    #endregion
-
     #region Dominio Sempione
     public DbSet<DivisaRecord> Divisa { get; set; } = null!;
     public DbSet<CorsoDivisaRecord> CorsoDivisa { get; set; } = null!;
@@ -32,9 +25,5 @@ public class DivisaContext(DbContextOptions<DivisaContext> option) : DbContext(o
         modelBuilder.ApplyConfiguration(new CorsoDivisaRecordConfiguration());
         modelBuilder.ApplyConfiguration(new TipoDivisaConfiguration());
         modelBuilder.ApplyConfiguration(new GruppoDivisaConfiguration());
-
-        modelBuilder.ApplyConfiguration(new CorsoDivisaBossConfiguration());
-        modelBuilder.ApplyConfiguration(new DivisaBossConfiguration());
-        modelBuilder.ApplyConfiguration(new TabellaBossConfiguration());
     }
 }
