@@ -9,5 +9,17 @@ DOWNGRADE
 Per eseguire il downgrade di tutte le migration
 Update-Database –Migration 0 -Context FamContext -StartupProject Fam.WebAPi
 
+Scaffoling-Database -Context BossContext -StartupProject BancaSempione.Presentation.Divise.WebApi -Project BancaSempione.Infrastructure.Database -Output Migrations
 
+Scaffold-DbContext 
+-Connection 'Data Source=SBDWLU01\BDW;Initial Catalog=BSBOSS; Trusted_Connection=True; TrustServerCertificate=True;' 
+-Provider Microsoft.EntityFrameworkCore.SqlServer 
+-Context ScaffolidingContext  
+-UseDatabaseNames 
+-NoPluralize
+-OutputDir ScaffolidingModel 
+-Project BancaSempione.Infrastructure.Database 
+-StartupProject DataWarehouse.WebApi  
+-Tables TmpADPERFORMANCEGiornaliero
 
+Scaffold-DbContext -Connection 'Data Source=SBDWLU01\BDW;Initial Catalog=BSBOSS; Trusted_Connection=True; TrustServerCertificate=True;' -Provider Microsoft.EntityFrameworkCore.SqlServer -Context ScaffolidingContext  -UseDatabaseNames -NoPluralize -OutputDir ScaffolidingModel -Project BancaSempione.Infrastructure.Database -StartupProject BancaSempione.Presentation.Divise.Import -Tables TmpADPERFORMANCEGiornaliero

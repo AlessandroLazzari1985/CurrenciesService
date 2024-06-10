@@ -23,4 +23,8 @@
     <ProjectReference Include="..\BancaSempione.Infrastructure.Logging\BancaSempione.Infrastructure.Logging.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ScaffolidingModel\" />
+  </ItemGroup>
+
 </Project>

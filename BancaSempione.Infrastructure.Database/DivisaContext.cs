@@ -32,5 +32,9 @@ public class DivisaContext(DbContextOptions<DivisaContext> option) : DbContext(o
         modelBuilder.ApplyConfiguration(new CorsoDivisaRecordConfiguration());
         modelBuilder.ApplyConfiguration(new TipoDivisaConfiguration());
         modelBuilder.ApplyConfiguration(new GruppoDivisaConfiguration());
+
+        modelBuilder.ApplyConfiguration(new CorsoDivisaBossConfiguration());
+        modelBuilder.ApplyConfiguration(new DivisaBossConfiguration());
+        modelBuilder.ApplyConfiguration(new TabellaBossConfiguration());
     }
 }
