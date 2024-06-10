@@ -10,5 +10,8 @@ public class CorsoDivisaBossConfiguration : IEntityTypeConfiguration<CorsoDivisa
     {
         builder.HasKey(e => new { e.DATELA, e.DIVISA });
 
+        builder.Property(e => e.DIVISA)
+            .HasMaxLength(50)
+            .IsUnicode(false);
     }
 }

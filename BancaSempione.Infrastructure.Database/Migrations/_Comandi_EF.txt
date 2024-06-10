@@ -22,4 +22,4 @@ Scaffold-DbContext
 -StartupProject DataWarehouse.WebApi  
 -Tables TmpADPERFORMANCEGiornaliero
 
-Scaffold-DbContext -Connection 'Data Source=SBDWLU01\BDW;Initial Catalog=BSBOSS; Trusted_Connection=True; TrustServerCertificate=True;' -Provider Microsoft.EntityFrameworkCore.SqlServer -Context ScaffolidingContext  -UseDatabaseNames -NoPluralize -OutputDir ScaffolidingModel -Project BancaSempione.Infrastructure.Database -StartupProject BancaSempione.Presentation.Divise.Import -Tables TmpADPERFORMANCEGiornaliero
+Scaffold-DbContext -Connection 'Data Source=SBDWLU01\BDW;Initial Catalog=BSBOSS; Trusted_Connection=True; TrustServerCertificate=True;' -Provider Microsoft.EntityFrameworkCore.SqlServer -Context ScaffolidingContext  -UseDatabaseNames -NoPluralize -OutputDir ScaffolidingModel -Project BancaSempione.Infrastructure.Database -StartupProject BancaSempione.Presentation.Divise.Import -Tables TmpADUNIANA, TmpDivisaCorso, TmpTABELLE

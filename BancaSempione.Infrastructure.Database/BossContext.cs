@@ -1,4 +1,5 @@
 ﻿using BancaSempione.Domain.Boss;
+using BancaSempione.Infrastructure.Database.Configurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace BancaSempione.Infrastructure.Database
@@ -15,12 +16,10 @@ namespace BancaSempione.Infrastructure.Database
             modelBuilder.Entity<DivisaBoss>().ToTable("TmpADUNIANA");
             modelBuilder.Entity<TabellaBoss>().ToTable("TmpTABELLE");
             modelBuilder.Entity<CorsoDivisaBoss>().ToTable("TmpDivisaCorso");
-
-
-            modelBuilder.Entity<DivisaBoss>().HasKey(s => s.UAUNINUM);
-            modelBuilder.Entity<DivisaBoss>().Property(s => s.UAUNINUM).ValueGeneratedNever();
-            modelBuilder.Entity<TabellaBoss>().HasKey(s => new { s.TAB, s.CODE });
-            modelBuilder.Entity<CorsoDivisaBoss>().HasKey(x => new { x.DATELA, x.DIVISA });
+            
+            modelBuilder.ApplyConfiguration(new CorsoDivisaBossConfiguration());
+            modelBuilder.ApplyConfiguration(new DivisaBossConfiguration());
+            modelBuilder.ApplyConfiguration(new TabellaBossConfiguration());
         }
     }
 }
