@@ -10,8 +10,16 @@ public class CorsoDivisaRecord
     public decimal AskRate { get; set; }            // Tasso di vendita
     public decimal Performance { get; set; }        // 100 * (ExchangeRate - PreviousRate) / PreviousRate
     public decimal Spread { get; set; }
+
     public DateTime ValidFrom { get; set; }
     public DateTime ValidTo { get; set; }
     public long ValidFromUtc { get; set; }
     public long ValidToUtc { get; set; }
+
+    #region Sempione
+    public decimal CorsoInterno { get; set; }
+    public decimal CorsoRiferimento { get; set; }
+    public DateTime DataValutaCorsoInterno { get; set; }
+    public DateTime DataValutaCorsoRiferimento { get; set; }
+    #endregion
 }

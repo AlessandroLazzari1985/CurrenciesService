@@ -3,22 +3,22 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace BancaSempione.Tools.Database.ImportData;
 
-public class DiviseImporterTests
+public class GruppoDivisaImporterTests
 {
     [Fact]
-    public void ImportDivise()
+    public void Importa()
     {
         var provider = ToolsContainer.ImportBatch.Development;
-        var sut = provider.GetRequiredService<IDivisaImporter>();
+        var sut = provider.GetRequiredService<IGruppoDivisaImporter>();
 
         sut.Importa();
     }
 
     [Fact]
-    public void CancellaDivise()
+    public void Cancella()
     {
         var provider = ToolsContainer.ImportBatch.Development;
-        var sut = provider.GetRequiredService<IDivisaImporter>();
+        var sut = provider.GetRequiredService<IGruppoDivisaImporter>();
 
         sut.Cancella();
     }

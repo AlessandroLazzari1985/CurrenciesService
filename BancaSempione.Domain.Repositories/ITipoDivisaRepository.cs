@@ -1,9 +1,6 @@
-﻿using BancaSempione.Domain.Divise;
+﻿using Apsoft.Domain.Repositories.Core;
+using BancaSempione.Domain.Divise;
 
 namespace BancaSempione.Domain.Repositories;
 
-public interface ITipoDivisaRepository
-{
-    // TODO. Nella sua implementazione, bisogna tenere conto della lingua richiesta.
-    List<TipoDivisa> Items { get; }
-}
+public interface ITipoDivisaRepository : IRepository<TipoDivisa>;

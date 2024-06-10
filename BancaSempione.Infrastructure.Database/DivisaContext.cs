@@ -12,6 +12,7 @@ public class DivisaContext(DbContextOptions<DivisaContext> option) : DbContext(o
     public DbSet<CorsoDivisaRecord> CorsoDivisa { get; set; } = null!;
     public DbSet<TipoDivisa> TipoDivisa { get; set; } = null!;
     public DbSet<GruppoDivisa> GruppoDivisa { get; set; } = null!;
+    public DbSet<CurrencyPairRecord> CurrencyPair { get; set; } = null!;
     #endregion
 
     #region Logs

@@ -3,4 +3,4 @@ using BancaSempione.Domain.Divise;
 
 namespace BancaSempione.Domain.Repositories;
 
-public interface IGruppoDivisaRepository : IRepository<GruppoDivisa> { }
+public interface ICorsoDivisaRepository : IRepository<CorsoDivisa>;

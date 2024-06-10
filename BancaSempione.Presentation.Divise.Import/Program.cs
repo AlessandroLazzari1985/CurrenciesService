@@ -1,4 +1,5 @@
 ﻿using BancaSempione.Application.Provider.Boss;
+using BancaSempione.Application.Provider.Boss.Importers;
 using BancaSempione.Infrastructure.Database;
 using BancaSempione.Infrastructure.Database.Logging;
 using BancaSempione.Infrastructure.Logging;
@@ -28,6 +29,6 @@ var serviceCollection = new ServiceCollection()
 var provider = serviceCollection.BuildServiceProvider();
 
 
-provider.GetRequiredService<IDivisaImporter>().ImportaDiviseDaBoss();
+provider.GetRequiredService<IDivisaImporter>().Importa();
 
 

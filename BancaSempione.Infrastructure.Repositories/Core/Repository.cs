@@ -8,6 +8,8 @@ public class Repository<T>(DbContext context) : IRepository<T>
 {
     private readonly DbSet<T> _dbSet = context.Set<T>();
 
+    public virtual IQueryable<T> Items => _dbSet.AsNoTracking();
+
     public void Delete()
     {
 	    var tableName = context.Model.FindEntityType(typeof(T))?.GetSchemaQualifiedTableName()!;
@@ -15,7 +17,7 @@ public class Repository<T>(DbContext context) : IRepository<T>
 	    context.Database.ExecuteSqlRaw(query);
     }
 
-    public void Insert(IEnumerable<T> list)
+    public virtual void Insert(IEnumerable<T> list)
     {
 	    context.BulkInsert(list, options =>
 	    {
@@ -24,81 +26,78 @@ public class Repository<T>(DbContext context) : IRepository<T>
 	    });
     }
 
-    public void Update(IEnumerable<T> items)
+    public virtual void Update(IEnumerable<T> items)
     {
         context.BulkUpdate(items);
     }
 
-    public void Delete(IEnumerable<T> list)
+    public virtual void Delete(IEnumerable<T> list)
     {
         context.BulkDelete(list);
     }
 
-    public void Merge(IEnumerable<T> list)
+    public virtual void Merge(IEnumerable<T> list)
     {
         context.BulkMerge(list);
     }
 
-    public void Insert(T item)
+    public virtual void Insert(T item)
     {
         context.SingleInsert(item);
     }
 
-    public void Update(T item)
+    public virtual void Update(T item)
     {
         context.SingleUpdate(item);
     }
 
-    public void Delete(T item)
+    public virtual void Delete(T item)
     {
         context.SingleDelete(item);
     }
 
-    public void Merge(T item)
+    public virtual void Merge(T item)
     {
         context.SingleMerge(item);
     }
 
-    public async Task InsertAsync(IEnumerable<T> list)
+    public virtual async Task InsertAsync(IEnumerable<T> list)
     {
         await context.BulkInsertAsync(list, options => options.AutoMapOutputDirection = false);
     }
 
-    public async Task UpdateAsync(IEnumerable<T> items)
+    public virtual async Task UpdateAsync(IEnumerable<T> items)
     {
         await context.BulkUpdateAsync(items);
     }
 
-    public async Task DeleteAsync(IEnumerable<T> list)
+    public virtual async Task DeleteAsync(IEnumerable<T> list)
     {
         await context.BulkDeleteAsync(list);
     }
 
-    public async Task MergeAsync(IEnumerable<T> list)
+    public virtual async Task MergeAsync(IEnumerable<T> list)
     {
         await context.BulkMergeAsync(list);
     }
 
-    public async Task InsertAsync(T item)
+    public virtual async Task InsertAsync(T item)
     {
         await context.SingleInsertAsync(item);
     }
 
-    public async Task UpdateAsync(T item)
+    public virtual async Task UpdateAsync(T item)
     {
         await context.SingleUpdateAsync(item);
     }
 
-    public async Task DeleteAsync(T item)
+    public virtual async Task DeleteAsync(T item)
     {
         await context.SingleDeleteAsync(item);
     }
 
-    public async Task MergeAsync(T item)
+    public virtual async Task MergeAsync(T item)
     {
         await context.SingleMergeAsync(item);
     }
-
-    public IQueryable<T> Items => _dbSet.AsNoTracking();
-
 }

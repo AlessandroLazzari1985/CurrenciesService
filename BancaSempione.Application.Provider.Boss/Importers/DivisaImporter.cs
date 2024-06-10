@@ -9,12 +9,12 @@ using CSharpFunctionalExtensions;
 using Microsoft.Extensions.Logging;
 using System.Globalization;
 
-namespace BancaSempione.Application.Provider.Boss;
+namespace BancaSempione.Application.Provider.Boss.Importers;
 
 public interface IDivisaImporter
 {
-    void ImportaDiviseDaBoss();
-    void CancellaDivise();
+    void Importa();
+    void Cancella();
 }
 
 internal class DivisaImporter(
@@ -25,19 +25,19 @@ internal class DivisaImporter(
     IDivisaBossRepository divisaBossRepository,
     ITabellaBossRepository tabellaBossRepository) : IDivisaImporter
 {
-    private readonly string _codiceTabellaDiviseIn ="BS04";
-    private readonly string _codiceEntrataEuro ="I";
+    private readonly string _codiceTabellaDiviseIn = "BS04";
+    private readonly string _codiceEntrataEuro = "I";
 
     public static List<decimal> TagliDivisa = [1m, 100m, 1000m];
 
 
-    public void CancellaDivise()
+    public void Cancella()
     {
         divisaRepository.Delete();
         logRepository.Delete();
     }
 
-    public void ImportaDiviseDaBoss()
+    public void Importa()
     {
         // Leggiamo le divise di Boss e le dividiamo per tipo
         var diviseBoss = divisaBossRepository.Items
@@ -62,7 +62,7 @@ internal class DivisaImporter(
         var diviseResult = diviseBoss
             .Select(x => MappaDivisa(x, currencies, gruppoDivisaById, tipoDivisaById, diviseEntrateNellEuro))
             .ToList();
-        
+
         var diviseNonImportate = diviseResult
             .Where(x => x.IsFailure)
             .Select(x => x.Error)
@@ -74,16 +74,16 @@ internal class DivisaImporter(
             .Where(x => x.IsSuccess)
             .Select(x => x.Value)
             .ToList();
-        
+
         var diviseByKey = divisaDaImportare.GroupBy(x => x.NumericCode).ToList();
-        
+
         var diviseDuplicate = diviseByKey
             .Where(x => x.Count() > 1)
             .SelectMany(x => x.ToList())
             .ToList();
 
         diviseDuplicate.ForEach(x => logger.LogWarning($"Divisa duplicata. {x.AlphabeticCode} {x.NumericCode} {x.DivisaId}"));
-        
+
         var diviseNonDuplicate = diviseByKey
             .Where(x => x.Count() == 1)
             .Select(x => x.Single())
@@ -93,7 +93,7 @@ internal class DivisaImporter(
     }
 
     private Result<Divisa> MappaDivisa(
-        DivisaBoss divisaBoss, 
+        DivisaBoss divisaBoss,
         Dictionary<string, Currency> currenciesByIsoCode,
         Dictionary<int, GruppoDivisa> gruppoDivisaById,
         Dictionary<string, TipoDivisa> tipoDivisaById,
@@ -151,7 +151,7 @@ internal class DivisaImporter(
 
         if (!currenciesByIsoCode.TryGetValue(isoCode, out var currency))
             return Result.Failure<Currency>($"La divisa non è mappata con una currency reale della ISO4217. ISO Code: [{isoCode}]");
-        
+
         return currency;
     }
 
