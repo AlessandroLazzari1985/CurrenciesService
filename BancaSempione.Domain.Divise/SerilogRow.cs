@@ -1,4 +1,4 @@
-﻿namespace BancaSempione.Infrastructure.Database.Model;
+﻿namespace BancaSempione.Domain.Divise;
 
 public class SerilogRow
 {

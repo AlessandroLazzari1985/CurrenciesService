@@ -13,11 +13,13 @@ namespace BancaSempione.Application.Provider.Boss;
 
 public interface IDivisaImporter
 {
-    void ImportaDivisaDaBoss();
+    void ImportaDiviseDaBoss();
+    void CancellaDivise();
 }
 
-public class DivisaImporter(
+internal class DivisaImporter(
     ILogger<DivisaImporter> logger,
+    ILogRepository logRepository,
     IDivisaRepository divisaRepository,
     ICurrencyRepository currencyRepository,
     IDivisaBossRepository divisaBossRepository,
@@ -28,7 +30,14 @@ public class DivisaImporter(
 
     public static List<decimal> TagliDivisa = [1m, 100m, 1000m];
 
-    public void ImportaDivisaDaBoss()
+
+    public void CancellaDivise()
+    {
+        divisaRepository.Delete();
+        logRepository.Delete();
+    }
+
+    public void ImportaDiviseDaBoss()
     {
         // Leggiamo le divise di Boss e le dividiamo per tipo
         var diviseBoss = divisaBossRepository.Items
@@ -65,8 +74,22 @@ public class DivisaImporter(
             .Where(x => x.IsSuccess)
             .Select(x => x.Value)
             .ToList();
+        
+        var diviseByKey = divisaDaImportare.GroupBy(x => x.NumericCode).ToList();
+        
+        var diviseDuplicate = diviseByKey
+            .Where(x => x.Count() > 1)
+            .SelectMany(x => x.ToList())
+            .ToList();
 
-        divisaRepository.Merge(divisaDaImportare);
+        diviseDuplicate.ForEach(x => logger.LogWarning($"Divisa duplicata. {x.AlphabeticCode} {x.NumericCode} {x.DivisaId}"));
+        
+        var diviseNonDuplicate = diviseByKey
+            .Where(x => x.Count() == 1)
+            .Select(x => x.Single())
+            .ToList();
+
+        divisaRepository.Merge(diviseNonDuplicate);
     }
 
     private Result<Divisa> MappaDivisa(
@@ -124,8 +147,10 @@ public class DivisaImporter(
 
     private Result<Currency> GetCurrency(DivisaBoss divisaBoss, Dictionary<string, Currency> currenciesByIsoCode)
     {
-        if (!currenciesByIsoCode.TryGetValue(divisaBoss.UACODISO, out var currency))
-            return Result.Failure<Currency>($"La divisa {divisaBoss.UACODISO} non è mappata con una currency reale della ISO4217.");
+        var isoCode = divisaBoss.UACODISO.TrimOrEmpty();
+
+        if (!currenciesByIsoCode.TryGetValue(isoCode, out var currency))
+            return Result.Failure<Currency>($"La divisa non è mappata con una currency reale della ISO4217. ISO Code: [{isoCode}]");
         
         return currency;
     }

@@ -1,21 +1,18 @@
+using BancaSempione.Infrastructure.Database;
 using BancaSempione.Tools.Database.Managers;
-using DataWarehouse.Batch.Import;
-using DataWarehouse.IntegrationTests.Consts;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace DataWarehouse.IntegrationTests;
+namespace BancaSempione.Tools.Database;
 
 public class DeployDatabase
 {
     [Fact]
     public void Step_Crea_DataWarehouse_Database()
     {
-        Common.CreaDatabaseDataWarehouseContext(ConnectionsStrings.DataWarehouse.Production);
-    }
+        var provider = ToolsContainer.WebApi.Development;
 
-    [Fact]
-    public void RunImportBatch()
-    {
-        var provider = TestContainer.Production();
-        Execute.Run(provider);
+        var context =  provider.GetRequiredService<DivisaContext>();
+
+        MigrationManager.UpdateDatabase(context);
     }
 }

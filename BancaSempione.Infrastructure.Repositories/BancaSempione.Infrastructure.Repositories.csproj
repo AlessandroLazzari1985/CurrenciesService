@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Boss\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\BancaSempione.Domain.Repositories\BancaSempione.Domain.Repositories.csproj" />
     <ProjectReference Include="..\BancaSempione.Infrastructure.Database\BancaSempione.Infrastructure.Database.csproj" />
   </ItemGroup>

@@ -3,7 +3,7 @@ using BancaSempione.Domain.Divise;
 using BancaSempione.Domain.Repositories;
 using BancaSempione.Infrastructure.Database.Model;
 
-namespace BancaSempione.Infrastructure.Repositories;
+namespace BancaSempione.Infrastructure.Repositories.Domain;
 
 public class DivisaRepository(DivisaRecordRepository divisaRecordRepository) : IDivisaRepository
 {
@@ -105,7 +105,7 @@ public class DivisaRepository(DivisaRecordRepository divisaRecordRepository) : I
     public Divisa DivisaIstituto => divisaRecordRepository.Items.AsEnumerable()
         .Select(ToDomain)
         .Single(x => x.AlphabeticCode == Currency.CHF.AlphabeticCode);
-    
+
     private static Divisa ToDomain(DivisaRecord record)
     {
         return new Divisa(

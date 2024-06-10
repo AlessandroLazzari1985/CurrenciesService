@@ -1,4 +1,6 @@
-﻿using BancaSempione.Infrastructure.Database;
+﻿using Apsoft.Domain.Repositories;
+using BancaSempione.Application.Provider.Boss;
+using BancaSempione.Infrastructure.Database;
 using BancaSempione.Infrastructure.Database.Logging;
 using BancaSempione.Infrastructure.Logging;
 using BancaSempione.Infrastructure.Repositories;
@@ -15,12 +17,15 @@ public static class Container
         return serviceCollection
             .AddSingleton(appSettings)
 
-            // Application
+            // Domain
+            .Register_Apsoft_Domain_Repositories()
 
+            // Application
+            .Register_BancaSempione_Application_Provider_Boss()
 
             // Infrastructure
             .Register_BancaSempione_Infrastructure_Repositories()
             .Register_BancaSempione_Infrastructure_Logging(serilogSqlServer, appSettings.SerilogMails)
-            .Register_BancaSempione_Infrastructure_Database(appSettings.ConnectionStrings.DefaultConnection);
+            .Register_BancaSempione_Infrastructure_Database(appSettings.ConnectionStrings.DefaultConnection, appSettings.ConnectionStrings.BossConnection);
     }
 }

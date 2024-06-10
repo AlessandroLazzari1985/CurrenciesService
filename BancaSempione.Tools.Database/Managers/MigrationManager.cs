@@ -1,10 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace BancaSempione.Tools.Database.Managers;
 
 public static class MigrationManager
 {
-    public static void UpdateDatabase(DataWarehouseContext context)
+    public static void UpdateDatabase(DbContext context)
     {
         // Creazione/Aggiornamento del database
         context.GetInfrastructure().GetService<IMigrator>()?.Migrate();
@@ -16,7 +19,7 @@ public static class MigrationManager
         }
     }
 
-    public static void DowngradeDatabase(DataWarehouseContext context)
+    public static void DowngradeDatabase(DbContext context)
     {
         context.GetInfrastructure().GetService<IMigrator>()?.Migrate("0");
     }

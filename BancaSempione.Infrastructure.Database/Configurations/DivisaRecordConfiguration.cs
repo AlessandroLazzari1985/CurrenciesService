@@ -9,6 +9,7 @@ public class DivisaRecordConfiguration : IEntityTypeConfiguration<DivisaRecord>
     public void Configure(EntityTypeBuilder<DivisaRecord> builder)
     {
         builder.HasKey(e => e.DivisaRecordId);
+        builder.Property(e => e.DivisaRecordId).ValueGeneratedNever();
 
         builder.Property(e => e.AlphabeticCode).IsRequired().HasMaxLength(3);
 

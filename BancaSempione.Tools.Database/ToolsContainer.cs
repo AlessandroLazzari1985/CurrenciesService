@@ -3,10 +3,10 @@ using BancaSempione.Presentation.Divise.WebApi;
 using BancaSempione.Tools.Database.Enviroments;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BancaSempione.Tools.Database.Managers
+namespace BancaSempione.Tools.Database
 {
-    public static class TestContainer
-	{
+    public static class ToolsContainer
+    {
         public static class WebApi
         {
             public static ServiceProvider Production => GetImportBatchServiceProvider(WebApiAppSettingsCollection.Production);
