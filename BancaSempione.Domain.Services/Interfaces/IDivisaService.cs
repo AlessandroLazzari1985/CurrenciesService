@@ -1,9 +1,8 @@
-﻿using Apsoft.Domain.Repositories.Core;
-using BancaSempione.Domain.Divise;
+﻿using BancaSempione.Domain.Divise;
 
-namespace BancaSempione.Domain.Repositories;
+namespace BancaSempione.Domain.Services.Interfaces;
 
-public interface IDivisaRepository : IRepository<Divisa>
+public interface IDivisaService
 {
     Dictionary<string, Divisa> DiviseByIsoCode { get; }
     Dictionary<string, Divisa> DiviseIn { get; }

@@ -19,7 +19,7 @@ public class CurrencyPairRecordRepository(Repository<CurrencyPairRecord> recordR
         return new CurrencyPair(baseCurrency, counterCurrency);
     }
 
-    protected override CurrencyPairRecord FromDomain(CurrencyPair currencyPair)
+    protected override CurrencyPairRecord ToRecord(CurrencyPair currencyPair)
     {
         var result = _recordRepository.Items
             .SingleOrDefault(x => x.BaseCurrencyId == currencyPair.BaseCurrency.NumericCode &&

@@ -4,7 +4,6 @@ using Apsoft.Domain.Repositories;
 using BancaSempione.Domain.Boss;
 using BancaSempione.Domain.Divise;
 using BancaSempione.Domain.Repositories;
-using BancaSempione.Domain.Repositories.Boss;
 using CSharpFunctionalExtensions;
 using Microsoft.Extensions.Logging;
 using System.Globalization;

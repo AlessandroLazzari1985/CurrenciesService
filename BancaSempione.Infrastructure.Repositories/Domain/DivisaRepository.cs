@@ -42,7 +42,7 @@ public class DivisaRepository(DivisaRecordRepository recordRepository) : DomainR
         );
     }
 
-    protected override DivisaRecord FromDomain(Divisa divisa)
+    protected override DivisaRecord ToRecord(Divisa divisa)
     {
         return new DivisaRecord
         {

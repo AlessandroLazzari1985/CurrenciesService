@@ -14,85 +14,85 @@ public abstract class DomainRepository<TRecord, TDomain>(Repository<TRecord> rec
 
     public void Insert(IEnumerable<TDomain> list)
     {
-        recordRepository.Insert(list.Select(FromDomain));
+        recordRepository.Insert(list.Select(ToRecord));
     }
 
     public void Update(IEnumerable<TDomain> list)
     {
-        recordRepository.Update(list.Select(FromDomain));
+        recordRepository.Update(list.Select(ToRecord));
     }
 
     public void Delete(IEnumerable<TDomain> list)
     {
-        recordRepository.Delete(list.Select(FromDomain));
+        recordRepository.Delete(list.Select(ToRecord));
     }
 
     public void Merge(IEnumerable<TDomain> list)
     {
-        recordRepository.Merge(list.Select(FromDomain));
+        recordRepository.Merge(list.Select(ToRecord));
     }
 
     public void Insert(TDomain item)
     {
-        recordRepository.Insert(FromDomain(item));
+        recordRepository.Insert(ToRecord(item));
     }
 
     public void Update(TDomain item)
     {
-        recordRepository.Update(FromDomain(item));
+        recordRepository.Update(ToRecord(item));
     }
 
     public void Delete(TDomain item)
     {
-        recordRepository.Delete(FromDomain(item));
+        recordRepository.Delete(ToRecord(item));
     }
 
     public void Merge(TDomain item)
     {
-        recordRepository.Merge(FromDomain(item));
+        recordRepository.Merge(ToRecord(item));
     }
 
     public Task InsertAsync(IEnumerable<TDomain> list)
     {
-        return recordRepository.InsertAsync(list.Select(FromDomain));
+        return recordRepository.InsertAsync(list.Select(ToRecord));
     }
 
     public Task UpdateAsync(IEnumerable<TDomain> list)
     {
-        return recordRepository.UpdateAsync(list.Select(FromDomain));
+        return recordRepository.UpdateAsync(list.Select(ToRecord));
     }
 
     public Task DeleteAsync(IEnumerable<TDomain> list)
     {
-        return recordRepository.DeleteAsync(list.Select(FromDomain));
+        return recordRepository.DeleteAsync(list.Select(ToRecord));
     }
 
     public Task MergeAsync(IEnumerable<TDomain> list)
     {
-        return recordRepository.MergeAsync(list.Select(FromDomain));
+        return recordRepository.MergeAsync(list.Select(ToRecord));
     }
 
     public Task InsertAsync(TDomain item)
     {
-        return recordRepository.InsertAsync(FromDomain(item));
+        return recordRepository.InsertAsync(ToRecord(item));
     }
 
     public Task UpdateAsync(TDomain item)
     {
-        return recordRepository.UpdateAsync(FromDomain(item));
+        return recordRepository.UpdateAsync(ToRecord(item));
     }
 
     public Task DeleteAsync(TDomain item)
     {
-        return recordRepository.DeleteAsync(FromDomain(item));
+        return recordRepository.DeleteAsync(ToRecord(item));
     }
 
     public Task MergeAsync(TDomain item)
     {
-        return recordRepository.MergeAsync(FromDomain(item));
+        return recordRepository.MergeAsync(ToRecord(item));
     }
 
     protected abstract TDomain ToDomain(TRecord record);
 
-    protected abstract TRecord FromDomain(TDomain divisa);
+    protected abstract TRecord ToRecord(TDomain divisa);
 }

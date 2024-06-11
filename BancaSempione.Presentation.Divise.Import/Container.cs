@@ -1,5 +1,7 @@
 ﻿using Apsoft.Domain.Repositories;
 using BancaSempione.Application.Provider.Boss;
+using BancaSempione.Domain.Services;
+using BancaSempione.Infrastructure.Cache;
 using BancaSempione.Infrastructure.Database;
 using BancaSempione.Infrastructure.Database.Logging;
 using BancaSempione.Infrastructure.Logging;
@@ -19,11 +21,13 @@ public static class Container
 
             // Domain
             .Register_Apsoft_Domain_Repositories()
+            .Register_BancaSempione_Domain_Services()
 
             // Application
             .Register_BancaSempione_Application_Provider_Boss()
 
             // Infrastructure
+            .Register_BancaSempione_Infrastructure_Cache()
             .Register_BancaSempione_Infrastructure_Repositories()
             .Register_BancaSempione_Infrastructure_Logging(serilogSqlServer, appSettings.SerilogMails)
             .Register_BancaSempione_Infrastructure_Database(appSettings.ConnectionStrings.DefaultConnection, appSettings.ConnectionStrings.BossConnection);

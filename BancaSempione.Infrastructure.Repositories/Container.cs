@@ -1,6 +1,4 @@
-﻿using Apsoft.Domain.Repositories;
-using BancaSempione.Domain.Repositories;
-using BancaSempione.Domain.Repositories.Boss;
+﻿using BancaSempione.Domain.Repositories;
 using BancaSempione.Infrastructure.Repositories.Boss;
 using BancaSempione.Infrastructure.Repositories.Domain;
 using Microsoft.Extensions.DependencyInjection;
