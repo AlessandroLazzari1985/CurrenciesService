@@ -9,6 +9,8 @@ public static class Container
 {
     public static IServiceCollection Register_BancaSempione_Infrastructure_Cache(this IServiceCollection services)
     {
+        services.AddMemoryCache();
+
         services.AddSingleton<CacheManager>();
         services.Decorate<IDivisaService, DivisaServiceCache>();
         services.Decorate<IGruppoDivisaService, GruppoDivisaServiceCache>();

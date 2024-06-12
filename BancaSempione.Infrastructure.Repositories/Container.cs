@@ -22,7 +22,6 @@ public static class Container
         services.AddScoped<IGruppoDivisaRepository, GruppoDivisaRepository>();
         services.AddScoped<ITipoDivisaRepository, TipoDivisaRepository>();
         services.AddScoped<IDivisaRepository, DivisaRepository>();
-        services.AddScoped<ICurrencyPairRepository, CurrencyPairRecordRepository>();
         services.AddScoped<ICorsoDivisaRepository, CorsoDivisaRepository>();
 
         // Per registrare i repository di Boss

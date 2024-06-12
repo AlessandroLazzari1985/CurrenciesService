@@ -30,4 +30,9 @@
     <ProjectReference Include="..\BancaSempione.Infrastructure.Repositories\BancaSempione.Infrastructure.Repositories.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\DevExtreme\" />
+    <Folder Include="Controllers\Odata\" />
+  </ItemGroup>
+
 </Project>

@@ -2,7 +2,7 @@
 
 public class DivisaRecord
 {
-    public int DivisaRecordId { get; set; }
+    public int DivisaId { get; set; }
     public string AlphabeticCode { get; set; } = null!;
     public int NumericCode { get; set; }
     public string? Name { get; set; }

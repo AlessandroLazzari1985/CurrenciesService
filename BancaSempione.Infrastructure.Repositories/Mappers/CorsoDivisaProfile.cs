@@ -10,8 +10,15 @@ public class CorsoDivisaProfile : Profile
     public CorsoDivisaProfile()
     {
         CreateMap<CorsoDivisa, CorsoDivisaRecord>()
-            .ForMember(dest => dest.BaseCurrencyCode, opt => opt.MapFrom(src => src.CurrencyExchangeRate.CurrencyPair.BaseCurrency.AlphabeticCode))
-            .ForMember(dest => dest.CounterCurrencyCode, opt => opt.MapFrom(src => src.CurrencyExchangeRate.CurrencyPair.CounterCurrency.AlphabeticCode));
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.CurrencyExchangeRate.Id))
+            .ForMember(dest => dest.BaseCurrencyCode, opt => opt.MapFrom(src => src.CurrencyExchangeRate.CurrencyPair.BaseCurrency.NumericCode))
+            .ForMember(dest => dest.CounterCurrencyCode, opt => opt.MapFrom(src => src.CurrencyExchangeRate.CurrencyPair.CounterCurrency.NumericCode))
+            .ForMember(dest => dest.BidRate, opt => opt.MapFrom(src => src.CurrencyExchangeRate.BidRate))
+            .ForMember(dest => dest.AskRate, opt => opt.MapFrom(src => src.CurrencyExchangeRate.AskRate))
+            .ForMember(dest => dest.PreviousExchangeRate, opt => opt.MapFrom(src => src.CurrencyExchangeRate.PreviousExchangeRate))
+            .ForMember(dest => dest.ValidFromUtc, opt => opt.MapFrom(src => src.CurrencyExchangeRate.ValidPeriod.StartUtc))
+            .ForMember(dest => dest.ValidToUtc, opt => opt.MapFrom(src => src.CurrencyExchangeRate.ValidPeriod.EndUtc))
+            ;
 
         CreateMap<CorsoDivisaRecord, CorsoDivisa>()
             .ConstructUsing((record, context) =>
