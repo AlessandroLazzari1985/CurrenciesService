@@ -1,5 +1,5 @@
 ﻿using BancaSempione.Domain.Repositories;
-using BancaSempione.Domain.Repositories.Boss;
+using BancaSempione.Domain.Services.Interfaces;
 using Microsoft.Extensions.Logging;
 
 namespace BancaSempione.Application.Provider.Boss.Importers.ImportCorsoDivisa;
@@ -16,7 +16,7 @@ public class CorsoDivisaImporter(
     ICorsoDivisaBossRepository corsoDivisaBossRepository,
     ICorsoDivisaRepository corsoDivisaRepository,
     ICorsoDivisaBuilder corsoDivisaBuilder,
-    IDivisaRepository divisaRepository
+    IDivisaService divisaService
     ) : ICorsoDivisaImporter
 {
     public void ImportUltimi()
@@ -26,7 +26,7 @@ public class CorsoDivisaImporter(
 
         var attuali = corsoDivisaRepository.Items.ToList().ToDictionary(x => x.CurrencyPair);
         // var dictKeys = attuali.ToDictionary(x => x.Key, x => x.Value.CorsoDivisaId);
-        var processati = ultimiCorsoDivisaBoss.Select(x => corsoDivisaBuilder.Build(x, divisaRepository.DiviseById, divisaRepository.DivisaIstituto, attuali)).ToList();
+        var processati = ultimiCorsoDivisaBoss.Select(x => corsoDivisaBuilder.Build(x, divisaService.DiviseById, divisaService.DivisaIstituto, attuali)).ToList();
 
         var errors = processati.Where(x => x.IsFailure).Select(x => x.Error).ToList();
         errors.ForEach(x => logger.LogError(x));

@@ -1,7 +1,7 @@
-﻿using BancaSempione.Domain.Boss;
+﻿using Apsoft.Infrastructure.Repositories.Core;
+using BancaSempione.Domain.Boss;
 using BancaSempione.Domain.Repositories;
 using BancaSempione.Infrastructure.Database;
-using BancaSempione.Infrastructure.Repositories.Core;
 
 namespace BancaSempione.Infrastructure.Repositories.Boss;
 

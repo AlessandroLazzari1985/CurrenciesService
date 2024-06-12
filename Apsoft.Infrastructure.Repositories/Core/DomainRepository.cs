@@ -1,6 +1,4 @@
-﻿using Apsoft.Domain.Repositories.Core;
-
-namespace BancaSempione.Infrastructure.Repositories.Core;
+﻿namespace Apsoft.Infrastructure.Repositories.Core;
 
 public abstract class DomainRepository<TRecord, TDomain>(Repository<TRecord> recordRepository): IRepository<TDomain>
     where TRecord : class

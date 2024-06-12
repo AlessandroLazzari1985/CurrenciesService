@@ -1,7 +1,7 @@
 ﻿using Apsoft.Domain.FinancialData;
+using Apsoft.Infrastructure.Repositories.Core;
 using BancaSempione.Domain.Repositories;
 using BancaSempione.Infrastructure.Database.Model;
-using BancaSempione.Infrastructure.Repositories.Core;
 
 namespace BancaSempione.Infrastructure.Repositories.Domain;
 

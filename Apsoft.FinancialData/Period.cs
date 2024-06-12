@@ -7,6 +7,9 @@ public class Period : ValueObject<Period>
     public DateTime Start { get; }
     public DateTime End { get; }
 
+    public long StartUtc { get; }
+    public long EndUtc { get; }
+
     public Period(DateTime start, DateTime end)
     {
         if (start >= end)
@@ -16,6 +19,9 @@ public class Period : ValueObject<Period>
 
         Start = start;
         End = end;
+
+        StartUtc = start.ToFileTimeUtc();
+        EndUtc = end.ToFileTimeUtc();
     }
 
     // Metodo per verificare se un dato DateTime cade all'interno del periodo

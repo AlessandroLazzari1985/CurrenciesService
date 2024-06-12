@@ -1,7 +1,6 @@
 ﻿using Apsoft.Domain.FinancialData;
 using BancaSempione.Domain.Boss;
 using BancaSempione.Domain.Divise;
-using BancaSempione.Domain.Repositories;
 using CSharpFunctionalExtensions;
 
 namespace BancaSempione.Application.Provider.Boss.Importers.ImportCorsoDivisa;
@@ -16,11 +15,7 @@ public interface ICorsoDivisaBuilder
         Dictionary<CurrencyPair, CorsoDivisa> corsiDivisaActual);
 }
 
-public class CorsoDivisaBuilder(
-    //ICorsoDivisaIdManager corsoDivisaIdManager, 
-    //IPercentualeManager percentualeManager,
-    )
-    : ICorsoDivisaBuilder
+public class CorsoDivisaBuilder : ICorsoDivisaBuilder
 {
     public Result<CorsoDivisa> Build(
         CorsoDivisaBoss stage,

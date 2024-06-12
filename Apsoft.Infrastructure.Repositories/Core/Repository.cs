@@ -1,7 +1,7 @@
 ﻿using Apsoft.Domain.Repositories.Core;
 using Microsoft.EntityFrameworkCore;
 
-namespace BancaSempione.Infrastructure.Repositories.Core;
+namespace Apsoft.Infrastructure.Repositories.Core;
 
 public class Repository<T>(DbContext context) : IRepository<T>
     where T : class

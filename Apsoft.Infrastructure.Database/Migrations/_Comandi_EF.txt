@@ -1,0 +1,2 @@
+﻿add-migration Initial	-Context FinancialDataContext -StartupProject BancaSempione.Presentation.Divise.WebApi -Project Apsoft.Infrastructure.Database -Output Migrations
+

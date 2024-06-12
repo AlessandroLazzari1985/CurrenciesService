@@ -1,30 +1,12 @@
-﻿using Apsoft.Domain.FinancialData;
+﻿using Apsoft.Infrastructure.Repositories.Core;
 using BancaSempione.Domain.Divise;
 using BancaSempione.Domain.Repositories;
 using BancaSempione.Infrastructure.Database.Model;
-using BancaSempione.Infrastructure.Repositories.Core;
 
 namespace BancaSempione.Infrastructure.Repositories.Domain;
 
-public class DivisaRepository(DivisaRecordRepository recordRepository) : DomainRepository<DivisaRecord, Divisa>(recordRepository),  IDivisaRepository
+public class DivisaRepository(DivisaRecordRepository recordRepository) : DomainRepository<DivisaRecord, Divisa>(recordRepository), IDivisaRepository
 {
-    public Dictionary<string, Divisa> DiviseByIsoCode => recordRepository.Items.AsEnumerable()
-        .Select(ToDomain)
-        .ToDictionary(x => x.AlphabeticCode, x => x);
-
-    public Dictionary<string, Divisa> DiviseIn => recordRepository.Items.AsEnumerable()
-        .Select(ToDomain)
-        .Where(x => x.IsDivisaIn)
-        .ToDictionary(x => x.AlphabeticCode, x => x);
-
-    public Dictionary<int, Divisa> DiviseById => recordRepository.Items.AsEnumerable()
-        .Select(ToDomain)
-        .ToDictionary(x => x.DivisaId, x => x);
-
-    public Divisa DivisaIstituto => recordRepository.Items.AsEnumerable()
-        .Select(ToDomain)
-        .Single(x => x.AlphabeticCode == Currency.CHF.AlphabeticCode);
-
     protected override Divisa ToDomain(DivisaRecord record)
     {
         return new Divisa(
