@@ -2,6 +2,7 @@
 using BancaSempione.Infrastructure.Repositories.Boss;
 using BancaSempione.Infrastructure.Repositories.Domain;
 using BancaSempione.Infrastructure.Repositories.Mappers;
+using BancaSempione.Infrastructure.Repositories.Records;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BancaSempione.Infrastructure.Repositories;
@@ -12,6 +13,7 @@ public static class Container
     {
         // Per usi interni a questo progetto
         services.AddScoped<DivisaRecordRepository>();
+        services.AddScoped<CorsoDivisaRecordRepository>();
 
 
         // Per registrare i repository di del dominio
@@ -29,6 +31,7 @@ public static class Container
         services.AddScoped<ITabellaBossRepository, TabellaBossRepository>();
 
         services.AddAutoMapper(typeof(DivisaProfile));
+        services.AddAutoMapper(typeof(CorsoDivisaProfile));
         return services;
     }
 }

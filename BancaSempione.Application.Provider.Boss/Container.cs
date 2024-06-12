@@ -16,7 +16,7 @@ public static class Container
 
         serviceCollection.AddScoped<ICorsoDivisaImporter, CorsoDivisaImporter>();
         serviceCollection.AddScoped<ICorsoDivisaBuilder, CorsoDivisaBuilder>();
-        serviceCollection.AddTransient<ICorsoDivisaIdManager, CorsoDivisaIdManager>();
+        // serviceCollection.AddTransient<ICorsoDivisaIdManager, CorsoDivisaIdManager>();
         serviceCollection.AddTransient<IPercentualeManager, PercentualeManager>();
 
         return serviceCollection;

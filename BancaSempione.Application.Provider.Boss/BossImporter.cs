@@ -21,7 +21,7 @@ public class BossImporter(
         gruppoDivisaImporter.Importa();
         tipoDivisaImporter.Importa();
         divisaImporter.Importa();
-        corsoDivisaImporter.ImportUltimi();
+        corsoDivisaImporter.ImportaUltimi();
     }
 
     public void Cancella()
@@ -29,7 +29,7 @@ public class BossImporter(
         gruppoDivisaImporter.Cancella();
         tipoDivisaImporter.Cancella();
         divisaImporter.Cancella();
-        corsoDivisaImporter.ImportUltimi();
+        corsoDivisaImporter.ImportaUltimi();
 
     }
 }

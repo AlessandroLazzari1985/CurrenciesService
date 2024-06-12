@@ -12,7 +12,6 @@ public class DivisaContext(DbContextOptions<DivisaContext> option) : DbContext(o
     public DbSet<CorsoDivisaRecord> CorsoDivisa { get; set; } = null!;
     public DbSet<TipoDivisa> TipoDivisa { get; set; } = null!;
     public DbSet<GruppoDivisa> GruppoDivisa { get; set; } = null!;
-    public DbSet<CurrencyPairRecord> CurrencyPair { get; set; } = null!;
     #endregion
 
     #region Logs
@@ -21,7 +20,7 @@ public class DivisaContext(DbContextOptions<DivisaContext> option) : DbContext(o
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.HasDefaultSchema(PublicNames.DefaltSchema);
+        modelBuilder.HasDefaultSchema(PublicNames.DiviseSchema);
         modelBuilder.ApplyConfiguration(new DivisaRecordConfiguration());
         modelBuilder.ApplyConfiguration(new CorsoDivisaRecordConfiguration());
         modelBuilder.ApplyConfiguration(new TipoDivisaConfiguration());

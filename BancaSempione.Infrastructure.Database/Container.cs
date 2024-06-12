@@ -20,7 +20,7 @@ public static class Container
     private static IServiceCollection RegisterDivisaContext(this IServiceCollection services, string domainConnectionString)
     {
         return services.AddDbContext<DivisaContext>(option => option
-            .UseSqlServer(domainConnectionString, x => { x.MigrationsHistoryTable("__MigrationsHistory", PublicNames.DefaltSchema); }));
+            .UseSqlServer(domainConnectionString, x => { x.MigrationsHistoryTable("__MigrationsHistory", PublicNames.DiviseSchema); }));
     }
 
     private static IServiceCollection RegisterBossContext(this IServiceCollection services, string domainConnectionString)

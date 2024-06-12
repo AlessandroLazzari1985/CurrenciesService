@@ -11,7 +11,7 @@ public class CurrencyExchangeRate : Entity
     public decimal PreviousExchangeRate { get; }    // Tasso di cambio. Valore di riferimento o media tra Bid e Ask
     public decimal Performance { get; }             // 100 * (ExchangeRate - PreviousRate) / PreviousRate
     public decimal Spread => AskRate - BidRate;
-    public Period ValidPeriod { get; }
+    public Period ValidPeriod { get; set; }         // Set per poter aggiornare il periodo di validità
 
     public CurrencyExchangeRate(CurrencyPair currencyPair, decimal bidRate, decimal askRate, Period validPeriod, decimal previousExchangeRate)
     {

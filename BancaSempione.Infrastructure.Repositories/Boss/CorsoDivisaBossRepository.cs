@@ -5,4 +5,4 @@ using BancaSempione.Infrastructure.Database;
 
 namespace BancaSempione.Infrastructure.Repositories.Boss;
 
-internal class CorsoDivisaBossRepository(BossContext context) : Repository<CorsoDivisaBoss>(context), ICorsoDivisaBossRepository;
+public class CorsoDivisaBossRepository(BossContext context) : Repository<CorsoDivisaBoss>(context), ICorsoDivisaBossRepository;

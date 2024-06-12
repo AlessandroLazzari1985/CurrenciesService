@@ -12,6 +12,8 @@ namespace BancaSempione.Infrastructure.Database
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasDefaultSchema(PublicNames.DiviseSchema);
+
             modelBuilder.Entity<DivisaBoss>().ToTable("TmpADUNIANA");
             modelBuilder.Entity<TabellaBoss>().ToTable("TmpTABELLE");
             modelBuilder.Entity<CorsoDivisaBoss>().ToTable("TmpDivisaCorso");

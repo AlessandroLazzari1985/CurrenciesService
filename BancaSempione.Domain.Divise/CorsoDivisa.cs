@@ -8,10 +8,10 @@ public class CorsoDivisa(CurrencyExchangeRate currencyExchangeRate, TipoCorsoDiv
     public TipoCorsoDivisa TipoCorsoDivisa { get; } = tipoCorsoDivisa;
 }
 
+// TODO: Aggiungere altri tipi di corso
 public enum TipoCorsoDivisa
 {
     CorsoInterno,
     CorsoRiferimento,
     CorsoFiscale,
-    // TODO: Aggiungere altri tipi di corso
 }
