@@ -7,9 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Apsoft.Infrastructure.Repositories\Apsoft.Infrastructure.Repositories.csproj" />
     <ProjectReference Include="..\BancaSempione.Domain.Repositories\BancaSempione.Domain.Repositories.csproj" />
     <ProjectReference Include="..\BancaSempione.Infrastructure.Database\BancaSempione.Infrastructure.Database.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Mappers\" />
   </ItemGroup>
 
 </Project>

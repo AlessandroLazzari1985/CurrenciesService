@@ -187,6 +187,17 @@ public class Currency(
     {
         yield return AlphabeticCode;
     }
+
+    public static Currency GetByAlphabeticCode(string alphaIso3)
+    {
+        return GetAll().Single(x => x.AlphabeticCode == alphaIso3);
+    }
+
+    public static Currency GetByNumericCode(int numericCode)
+    {
+        return GetAll().Single(x => x.NumericCode == numericCode);
+    }
+
 }
 
 

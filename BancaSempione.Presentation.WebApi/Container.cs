@@ -24,7 +24,6 @@ public static class Container
 // Domain ------------------------------------------------------------
             // Apsoft
             .Register_Apsoft_Domain_Services()
-            .Register_Apsoft_Domain_Repositories()
 
             // Sempione
             .Register_BancaSempione_Domain_Services()

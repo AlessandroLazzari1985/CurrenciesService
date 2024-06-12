@@ -1,5 +1,13 @@
-﻿namespace Apsoft.Infrastructure.Repositories.Core;
+﻿using Apsoft.Domain.Repositories.Core;
 
+namespace Apsoft.Infrastructure.Repositories.Core;
+
+// TODO: Da valutare se fare il mapping con Automapper o con un IMapper
+// Questa classe è astratta per permettere di definire i metodi ToDomain e ToRecord
+// Si potrebbe anche iniettare un IMapper per fare il mapping tra record e dominio
+// Questo perche in Automapper non si dovrebber iniettare altri repository nel mapping.
+// Tuttavia è possibile iniettare un IMapper in un DomainRepository e fare il mapping
+// Quindi va valutare cosa fare.
 public abstract class DomainRepository<TRecord, TDomain>(Repository<TRecord> recordRepository): IRepository<TDomain>
     where TRecord : class
     where TDomain : class
@@ -92,5 +100,5 @@ public abstract class DomainRepository<TRecord, TDomain>(Repository<TRecord> rec
 
     protected abstract TDomain ToDomain(TRecord record);
 
-    protected abstract TRecord ToRecord(TDomain divisa);
+    protected abstract TRecord ToRecord(TDomain entity);
 }

@@ -19,15 +19,15 @@ public class CurrencyPairRecordRepository(Repository<CurrencyPairRecord> recordR
         return new CurrencyPair(baseCurrency, counterCurrency);
     }
 
-    protected override CurrencyPairRecord ToRecord(CurrencyPair currencyPair)
+    protected override CurrencyPairRecord ToRecord(CurrencyPair entity)
     {
         var result = _recordRepository.Items
-            .SingleOrDefault(x => x.BaseCurrencyId == currencyPair.BaseCurrency.NumericCode &&
-                                  x.CounterCurrencyId == currencyPair.CounterCurrency.NumericCode) ?? new CurrencyPairRecord
+            .SingleOrDefault(x => x.BaseCurrencyId == entity.BaseCurrency.NumericCode &&
+                                  x.CounterCurrencyId == entity.CounterCurrency.NumericCode) ?? new CurrencyPairRecord
         {
             CurrencyPairRecordId = Guid.NewGuid(),
-            BaseCurrencyId = currencyPair.BaseCurrency.NumericCode,
-            CounterCurrencyId = currencyPair.CounterCurrency.NumericCode
+            BaseCurrencyId = entity.BaseCurrency.NumericCode,
+            CounterCurrencyId = entity.CounterCurrency.NumericCode
         };
 
 

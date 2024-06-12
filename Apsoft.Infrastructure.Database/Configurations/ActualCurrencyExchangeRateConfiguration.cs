@@ -12,33 +12,16 @@ public class ActualCurrencyExchangeRateConfiguration : IEntityTypeConfiguration<
 
         builder.HasKey(c => c.Id);
 
-        builder.Property(c => c.Id).ValueGeneratedNever();
-
-        builder.OwnsOne(c => c.CurrencyPair, cp =>
-        {
-            cp.Property(c => c.BaseCurrency.AlphabeticCode)
-                .HasColumnName("BaseCurrencyCode")
-                .HasMaxLength(3)
-                .IsRequired();
-
-            cp.Property(c => c.CounterCurrency.AlphabeticCode)
-                .HasColumnName("CounterCurrencyCode")
-                .HasMaxLength(3)
-                .IsRequired();
-        });
-
-        builder.Property(c => c.ExchangeRate).HasPrecision(18, 6).IsRequired();
-
+        builder.Property(c => c.BaseCurrencyCode).ValueGeneratedNever();
+        builder.Property(c => c.CounterCurrencyCode).ValueGeneratedNever();
         builder.Property(c => c.BidRate).HasPrecision(18, 6).IsRequired();
-
         builder.Property(c => c.AskRate).HasPrecision(18, 6).IsRequired();
+        builder.Property(c => c.PreviousExchangeRate).HasPrecision(18, 6).IsRequired();
 
-        builder.Property(c => c.Performance).HasPrecision(18, 6).IsRequired();
+        builder.Property(c => c.ValidFromUtc).IsRequired();
+        builder.Property(c => c.ValidFromUtc).IsRequired();
 
-        //TODO: Eliminare le date quando siamo sicuri dello sviluppo
-        builder.Property(c => c.ValidPeriod.Start).IsRequired();
-        builder.Property(c => c.ValidPeriod.End).IsRequired();
-        builder.Property(c => c.ValidPeriod.StartUtc).IsRequired();
-        builder.Property(c => c.ValidPeriod.EndUtc).IsRequired();
+        // Creare un indice combinato su BaseCurrencyCode e CounterCurrencyCode per migliorare le performance delle query
+        builder.HasIndex(c => new { c.BaseCurrencyCode, c.CounterCurrencyCode });
     }
 }

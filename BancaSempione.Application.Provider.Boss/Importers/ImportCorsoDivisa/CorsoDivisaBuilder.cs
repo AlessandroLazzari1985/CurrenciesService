@@ -7,51 +7,97 @@ namespace BancaSempione.Application.Provider.Boss.Importers.ImportCorsoDivisa;
 
 public interface ICorsoDivisaBuilder
 {
-    Result<CorsoDivisa> Build(
+    Result<CorsoDivisa> BuildCorsoInterno(
         CorsoDivisaBoss stage,
         Dictionary<int, Divisa> divise,
         Divisa divisaIstituto,
-        // Dictionary<CurrencyPair, Guid> dictKeys,
-        Dictionary<CurrencyPair, CorsoDivisa> corsiDivisaActual);
+        Dictionary<CurrencyPair, CorsoDivisa> ultimiCorsiInterni);
+
+    Result<CorsoDivisa> BuildCorsoRiferimento(
+        CorsoDivisaBoss stage,
+        Dictionary<int, Divisa> divise,
+        Divisa divisaIstituto,
+        Dictionary<CurrencyPair, CorsoDivisa> ultimiCorsiRiferimento);
 }
 
 public class CorsoDivisaBuilder : ICorsoDivisaBuilder
 {
-    public Result<CorsoDivisa> Build(
+    public Result<CorsoDivisa> BuildCorsoInterno(
         CorsoDivisaBoss stage,
         Dictionary<int, Divisa> divise,
         Divisa divisaIstituto,
-        // Dictionary<CurrencyPair, Guid> dictKeys,
-        Dictionary<CurrencyPair, CorsoDivisa> corsiDivisaActual)
+        Dictionary<CurrencyPair, CorsoDivisa> ultimiCorsiInterni)
     {
-        var divisaFromIdString = stage.DIVISA.Trim();
+        var divisaResult = GetDivisa(stage, divise);
+        if (divisaResult.IsFailure)
+            return Result.Failure<CorsoDivisa>(divisaResult.Error);
 
-        if (!int.TryParse(divisaFromIdString, out int divisaId))
-            return Result.Failure<CorsoDivisa>("DIVISA non è un campo numerico");
+        var divisa = divisaResult.Value;
+        var corsoDivisaKey = new CurrencyPair(divisa, divisaIstituto);
 
-        if (!divise.TryGetValue(divisaId, out var divisa))
-            return Result.Failure<CorsoDivisa>($"DATELA: {stage.DATELA} DIVISA: {stage.DIVISA} .Non esiste la divisa con id {stage.DIVISA}");
+        var lastExchageRate = GetLastExchageRate(ultimiCorsiInterni, corsoDivisaKey);
+        var validPeriod = new Period(stage.DATELA, DateTime.MaxValue);
 
-        var corsoRiferimento = Math.Round(Convert.ToDecimal(stage.CORSCR) / divisa.Taglio, 6);
-        var corsoInterno = Math.Round(Convert.ToDecimal(stage.CORSCI) / divisa.Taglio, 6);
+        var corsoInterno = GetCorsoInterno(stage, divisa);
+        var currencyExchangeRate = new CurrencyExchangeRate(corsoDivisaKey, corsoInterno, corsoInterno, validPeriod, lastExchageRate);
+
+
+        var result = new CorsoDivisa(currencyExchangeRate, TipoCorsoDivisa.CorsoInterno);
+
+        return result;
+    }
+    
+    public Result<CorsoDivisa> BuildCorsoRiferimento(
+        CorsoDivisaBoss stage,
+        Dictionary<int, Divisa> divise,
+        Divisa divisaIstituto,
+        Dictionary<CurrencyPair, CorsoDivisa> ultimiCorsiRiferimento)
+    {
+        var divisaResult = GetDivisa(stage, divise);
+        if (divisaResult.IsFailure)
+            return Result.Failure<CorsoDivisa>(divisaResult.Error);
+
+        var divisa = divisaResult.Value;
 
         var corsoDivisaKey = new CurrencyPair(divisa, divisaIstituto);
-        // var corsoDivisaId = corsoDivisaIdManager.GetCorsoDivisaId(corsoDivisaKey, dictKeys);
 
-        corsiDivisaActual.TryGetValue(corsoDivisaKey, out var actualCorsoDivisa);
+        var lastExchageRate = GetLastExchageRate(ultimiCorsiRiferimento, corsoDivisaKey);
 
-        //var corsoInternoDailyPerformance = percentualeManager.CalcolaPerformance(corsoInterno, actualCorsoDivisa?.CorsoInterno ?? 0m);
-        //var corsoRiferimentoDailyPerformance = percentualeManager.CalcolaPerformance(corsoRiferimento, actualCorsoDivisa?.CorsoRiferimento ?? 0m);
+        var validPeriod = new Period(stage.DATELA, DateTime.MaxValue);
 
-        var result = new CorsoDivisa(corsoDivisaKey, corsoInterno, corsoInterno, corsoInterno, new Period(stage.DATELA, DateTime.MaxValue), actualCorsoDivisa?.CorsoInterno);
-
-        result.CorsoRiferimento = corsoRiferimento;
-        result.CorsoInterno = corsoInterno;
-        result.DataValutaCorsoInterno = stage.VALUCI;
-        result.DataValutaCorsoRiferimento = stage.VALUCR;
-
+        var corsoRiferimento = GetCorsoRiferimento(stage, divisa);
+        var currencyExchangeRate = new CurrencyExchangeRate(corsoDivisaKey, corsoRiferimento, corsoRiferimento, validPeriod, lastExchageRate);
+        var result = new CorsoDivisa(currencyExchangeRate, TipoCorsoDivisa.CorsoRiferimento);
 
         return result;
     }
 
+    private decimal GetCorsoInterno(CorsoDivisaBoss stage, Divisa divisa)
+    {
+        return Math.Round(Convert.ToDecimal(stage.CORSCI) / divisa.Taglio, 6);
+    }
+
+    private decimal GetCorsoRiferimento(CorsoDivisaBoss stage, Divisa divisa)
+    {
+        return Math.Round(Convert.ToDecimal(stage.CORSCR) / divisa.Taglio, 6);
+    }
+
+    private Result<Divisa> GetDivisa(CorsoDivisaBoss stage, Dictionary<int, Divisa> divise)
+    {
+        var divisaFromIdString = stage.DIVISA.Trim();
+        if (!int.TryParse(divisaFromIdString, out int divisaId))
+            return Result.Failure<Divisa>("DIVISA non è un campo numerico");
+
+        if (!divise.TryGetValue(divisaId, out var divisa))
+            return Result.Failure<Divisa>($"DATELA: {stage.DATELA} DIVISA: {stage.DIVISA} .Non esiste la divisa con id {stage.DIVISA}");
+
+        return Result.Success(divisa);
+    }
+
+    private static decimal GetLastExchageRate(Dictionary<CurrencyPair, CorsoDivisa> ultimiCorsiRiferimento, CurrencyPair corsoDivisaKey)
+    {
+        ultimiCorsiRiferimento.TryGetValue(corsoDivisaKey, out var actualCorsoDivisa);
+        var lastExchageRate = actualCorsoDivisa?.CurrencyExchangeRate.ExchangeRate ?? 0m;
+        return lastExchageRate;
+    }
 }

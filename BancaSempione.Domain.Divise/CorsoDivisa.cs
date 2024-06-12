@@ -2,17 +2,16 @@
 
 namespace BancaSempione.Domain.Divise;
 
-public class CorsoDivisa(
-    CurrencyPair currencyPair,
-    decimal exchangeRate,
-    decimal bidRate,
-    decimal askRate,
-    Period validPeriod,
-    decimal? previousExchangeRate = null)
-    : CurrencyExchangeRate(currencyPair, exchangeRate, bidRate, askRate, validPeriod, previousExchangeRate)
+public class CorsoDivisa(CurrencyExchangeRate currencyExchangeRate, TipoCorsoDivisa tipoCorsoDivisa)
 {
-    public decimal CorsoInterno { get; set; }
-    public decimal CorsoRiferimento { get; set; }
-    public DateTime DataValutaCorsoInterno { get; set; }
-    public DateTime DataValutaCorsoRiferimento { get; set; }
+    public CurrencyExchangeRate CurrencyExchangeRate { get; } = currencyExchangeRate;
+    public TipoCorsoDivisa TipoCorsoDivisa { get; } = tipoCorsoDivisa;
+}
+
+public enum TipoCorsoDivisa
+{
+    CorsoInterno,
+    CorsoRiferimento,
+    CorsoFiscale,
+    // TODO: Aggiungere altri tipi di corso
 }

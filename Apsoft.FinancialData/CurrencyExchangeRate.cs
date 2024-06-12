@@ -5,22 +5,25 @@ namespace Apsoft.Domain.FinancialData;
 public class CurrencyExchangeRate : Entity
 {
     public CurrencyPair CurrencyPair { get; }
-    public decimal ExchangeRate { get; }        // Tasso di cambio. Valore di riferimento o media tra Bid e Ask
-    public decimal BidRate { get; }             // Tasso di acquisto
-    public decimal AskRate { get; }             // Tasso di vendita
-    public decimal Performance { get; }         // 100 * (ExchangeRate - PreviousRate) / PreviousRate
+    public decimal BidRate { get; }                 // Tasso di acquisto
+    public decimal AskRate { get; }                 // Tasso di vendita
+    public decimal ExchangeRate { get; }            // Tasso di cambio. Valore di riferimento o media tra Bid e Ask
+    public decimal PreviousExchangeRate { get; }    // Tasso di cambio. Valore di riferimento o media tra Bid e Ask
+    public decimal Performance { get; }             // 100 * (ExchangeRate - PreviousRate) / PreviousRate
     public decimal Spread => AskRate - BidRate;
     public Period ValidPeriod { get; }
 
-    public CurrencyExchangeRate(CurrencyPair currencyPair, decimal exchangeRate, decimal bidRate, decimal askRate, Period validPeriod, decimal? previousExchangeRate = null)
+    public CurrencyExchangeRate(CurrencyPair currencyPair, decimal bidRate, decimal askRate, Period validPeriod, decimal previousExchangeRate)
     {
-        if (exchangeRate < 0) throw new ArgumentException("Must be > 0.", nameof(exchangeRate));
         if (bidRate < 0) throw new ArgumentException("Must be > 0.", nameof(bidRate));
         if (askRate < 0) throw new ArgumentException("Must be > 0.", nameof(askRate));
+
+        var exchangeRate = (askRate + bidRate) / 2;
 
         Id = Guid.NewGuid();
         CurrencyPair = currencyPair ?? throw new ArgumentNullException(nameof(currencyPair)); ;
         ExchangeRate = exchangeRate;
+        PreviousExchangeRate = previousExchangeRate;
         BidRate = bidRate;
         AskRate = askRate;
         Performance = CalculateRateOfReturn(exchangeRate, previousExchangeRate);

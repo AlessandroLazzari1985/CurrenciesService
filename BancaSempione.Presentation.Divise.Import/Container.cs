@@ -1,5 +1,4 @@
-﻿using Apsoft.Domain.Repositories;
-using BancaSempione.Application.Provider.Boss;
+﻿using BancaSempione.Application.Provider.Boss;
 using BancaSempione.Domain.Services;
 using BancaSempione.Infrastructure.Cache;
 using BancaSempione.Infrastructure.Database;
@@ -20,7 +19,6 @@ public static class Container
             .AddSingleton(appSettings)
 
             // Domain
-            .Register_Apsoft_Domain_Repositories()
             .Register_BancaSempione_Domain_Services()
 
             // Application

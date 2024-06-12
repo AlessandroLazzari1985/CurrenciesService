@@ -24,6 +24,20 @@ public class Period : ValueObject<Period>
         EndUtc = end.ToFileTimeUtc();
     }
 
+    public Period(long startUtc, long endUtc)
+    {
+        if (startUtc >= endUtc)
+        {
+            throw new ArgumentException("ValidFrom deve essere antecedente a ValidTo.");
+        }
+
+        Start = DateTime.FromFileTimeUtc(startUtc);
+        End = DateTime.FromFileTimeUtc(endUtc);
+
+        StartUtc = startUtc;
+        EndUtc = endUtc;
+    }
+
     // Metodo per verificare se un dato DateTime cade all'interno del periodo
     public bool Includes(DateTime dateTime)
     {

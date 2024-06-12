@@ -13,7 +13,7 @@ public class CorsoDivisaRepository(Repository<CorsoDivisaRecord> recordRepositor
         throw new NotImplementedException();
     }
 
-    protected override CorsoDivisaRecord ToRecord(CorsoDivisa divisa)
+    protected override CorsoDivisaRecord ToRecord(CorsoDivisa entity)
     {
         throw new NotImplementedException();
     }

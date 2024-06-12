@@ -24,17 +24,22 @@ public class CorsoDivisaImporter(
         var ultimaDataDisponibile = corsoDivisaBossRepository.Items.Max(x => x.DATELA);
         var ultimiCorsoDivisaBoss = corsoDivisaBossRepository.Items.Where(x => x.DATELA == ultimaDataDisponibile).ToList();
 
-        var attuali = corsoDivisaRepository.Items.ToList().ToDictionary(x => x.CurrencyPair);
-        // var dictKeys = attuali.ToDictionary(x => x.Key, x => x.Value.CorsoDivisaId);
-        var processati = ultimiCorsoDivisaBoss.Select(x => corsoDivisaBuilder.Build(x, divisaService.DiviseById, divisaService.DivisaIstituto, attuali)).ToList();
+        var attuali = corsoDivisaRepository.Items.ToList().ToDictionary(x => x.CurrencyExchangeRate.CurrencyPair);
+        var processatiCorsiInterni = ultimiCorsoDivisaBoss.Select(x => corsoDivisaBuilder.BuildCorsoInterno(x, divisaService.DiviseById, divisaService.DivisaIstituto, attuali)).ToList();
+        var processatiCorsiRiferimento = ultimiCorsoDivisaBoss.Select(x => corsoDivisaBuilder.BuildCorsoRiferimento(x, divisaService.DiviseById, divisaService.DivisaIstituto, attuali)).ToList();
 
-        var errors = processati.Where(x => x.IsFailure).Select(x => x.Error).ToList();
-        errors.ForEach(x => logger.LogError(x));
+        var errorsCorsiInterni = processatiCorsiInterni.Where(x => x.IsFailure).Select(x => x.Error).ToList();
+        errorsCorsiInterni.ForEach(x => logger.LogError(x));
 
-        var valoriCorretti = processati.Where(x => x.IsSuccess).Select(x => x.Value).ToList();
+        var errorsCorsiRiferimento = processatiCorsiRiferimento.Where(x => x.IsFailure).Select(x => x.Error).ToList();
+        errorsCorsiRiferimento.ForEach(x => logger.LogError(x));
+        
+        var corsiInterni = processatiCorsiInterni.Where(x => x.IsSuccess).Select(x => x.Value).ToList();
+        var corsiRiferimento = processatiCorsiRiferimento.Where(x => x.IsSuccess).Select(x => x.Value).ToList();
 
+        var corsi = corsiInterni.Union(corsiRiferimento).ToList();
 
-        corsoDivisaRepository.Merge(valoriCorretti);
+        corsoDivisaRepository.Merge(corsi);
     }
 
     public void ImportaStoria()
