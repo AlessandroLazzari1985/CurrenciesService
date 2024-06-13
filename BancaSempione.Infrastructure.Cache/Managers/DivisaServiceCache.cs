@@ -6,6 +6,9 @@ namespace BancaSempione.Infrastructure.Cache.Managers;
 
 public class DivisaServiceCache(IDivisaService service, CacheManager cacheManager) : IDivisaService
 {
+    public List<Divisa> Divise =>
+        cacheManager.GetFromCache(CacheKeys.DivisaServiceCacheKeys.Divise, () => service.Divise);
+
     public Dictionary<string, Divisa> DiviseByIsoCode => 
         cacheManager.GetFromCache(CacheKeys.DivisaServiceCacheKeys.DiviseByIsoCode, () => service.DiviseByIsoCode);
 

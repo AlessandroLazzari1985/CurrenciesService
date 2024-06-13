@@ -41,7 +41,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BancaSempione.Infrastructur
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BancaSempione.Infrastructure.Repositories", "BancaSempione.Infrastructure.Repositories\BancaSempione.Infrastructure.Repositories.csproj", "{76C196FB-EDEA-4689-8F5E-F66E897C4DB9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BancaSempione.Presentation.Divise.WebApi", "BancaSempione.Presentation.WebApi\BancaSempione.Presentation.Divise.WebApi.csproj", "{4192B1D9-EFC2-4BE8-B7D7-1D10ECC1E144}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BancaSempione.Presentation.Divise.WebApi", "BancaSempione.Presentation.Divise.WebApi\BancaSempione.Presentation.Divise.WebApi.csproj", "{4192B1D9-EFC2-4BE8-B7D7-1D10ECC1E144}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BancaSempione.Infrastructure.Logging", "BancaSempione.Infrastructure.Logging\BancaSempione.Infrastructure.Logging.csproj", "{0CD62050-B2AC-48AE-BE6C-5AC436FF6629}"
 EndProject
@@ -53,11 +53,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BancaSempione.Domain.Servic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BancaSempione.Infrastructure.Cache", "BancaSempione.Infrastructure.Cache\BancaSempione.Infrastructure.Cache.csproj", "{A4F15F42-E78C-454F-A355-CBA43111B022}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apsoft.Infrastructure.Database", "Apsoft.Infrastructure.Database\Apsoft.Infrastructure.Database.csproj", "{53A33252-5B0F-4B61-8402-249DBB75CEAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apsoft.Infrastructure.Database", "Apsoft.Infrastructure.Database\Apsoft.Infrastructure.Database.csproj", "{53A33252-5B0F-4B61-8402-249DBB75CEAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apsoft.Infrastructure.Repositories", "Apsoft.Infrastructure.Repositories\Apsoft.Infrastructure.Repositories.csproj", "{99889CE0-E22E-4A33-BC21-BC5DE8708711}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apsoft.Infrastructure.Repositories", "Apsoft.Infrastructure.Repositories\Apsoft.Infrastructure.Repositories.csproj", "{99889CE0-E22E-4A33-BC21-BC5DE8708711}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apsoft.Domain.Services", "Apsoft.Domain.Services\Apsoft.Domain.Services.csproj", "{E2F3CFB0-1753-4826-9C85-C996C0247693}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apsoft.Domain.Services", "Apsoft.Domain.Services\Apsoft.Domain.Services.csproj", "{E2F3CFB0-1753-4826-9C85-C996C0247693}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_root", "_root", "{327A15C3-5C04-491F-9E07-4ECA0D55AB78}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

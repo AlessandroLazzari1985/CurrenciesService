@@ -7,6 +7,8 @@ namespace BancaSempione.Domain.Services.Managers;
 
 public class DivisaService(IDivisaRepository repository) : IDivisaService
 {
+    public List<Divisa> Divise => repository.Items.ToList();
+
     public Dictionary<string, Divisa> DiviseByIsoCode => repository.Items.ToList()
         .ToDictionary(x => x.AlphabeticCode, x => x);
 

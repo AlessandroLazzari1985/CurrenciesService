@@ -1,0 +1,39 @@
+version: '3.4'
+
+services:
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: mssql
+    environment:
+      - MSSQL_SA_PASSWORD=<YourStrong@Passw0rd>
+      - ACCEPT_EULA=Y
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql_data:/var/opt/mssql
+    networks:
+      - webnet
+    user: root
+
+  webapi:
+    image: bancasempioneapi:latest
+    build:
+      context: .
+      dockerfile: ./BancaSempione.Presentation.Divise.WebApi/Dockerfile
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+      - "44398:44398"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=mssql;Database=Divise;User Id=sa;Password=<YourStrong@Passw0rd>;
+    depends_on:
+      - mssql
+    networks:
+      - webnet
+
+networks:
+  webnet:
+
+volumes:
+  mssql_data:

@@ -5,6 +5,7 @@ public static class CacheKeys
 
     public static class DivisaServiceCacheKeys
     {
+        public static string Divise => $"{nameof(CacheKeys)}_{nameof(DivisaServiceCacheKeys)}_{nameof(Divise)}";
         public static string DiviseByIsoCode => $"{nameof(CacheKeys)}_{nameof(DivisaServiceCacheKeys)}_{nameof(DiviseByIsoCode)}";
         public static string DiviseIn => $"{nameof(CacheKeys)}_{nameof(DivisaServiceCacheKeys)}_{nameof(DiviseIn)}";
         public static string DiviseById => $"{nameof(CacheKeys)}_{nameof(DivisaServiceCacheKeys)}_{nameof(DiviseById)}";
