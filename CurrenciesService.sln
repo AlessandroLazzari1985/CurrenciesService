@@ -59,10 +59,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apsoft.Infrastructure.Repos
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apsoft.Domain.Services", "Apsoft.Domain.Services\Apsoft.Domain.Services.csproj", "{E2F3CFB0-1753-4826-9C85-C996C0247693}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_root", "_root", "{327A15C3-5C04-491F-9E07-4ECA0D55AB78}"
-	ProjectSection(SolutionItems) = preProject
-		docker-compose.yml = docker-compose.yml
-	EndProjectSection
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{353956EC-F7E6-4894-BBBE-44454C50AE3B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -158,6 +155,10 @@ Global
 		{E2F3CFB0-1753-4826-9C85-C996C0247693}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2F3CFB0-1753-4826-9C85-C996C0247693}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2F3CFB0-1753-4826-9C85-C996C0247693}.Release|Any CPU.Build.0 = Release|Any CPU
+		{353956EC-F7E6-4894-BBBE-44454C50AE3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{353956EC-F7E6-4894-BBBE-44454C50AE3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{353956EC-F7E6-4894-BBBE-44454C50AE3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{353956EC-F7E6-4894-BBBE-44454C50AE3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
