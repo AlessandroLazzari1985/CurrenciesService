@@ -2,7 +2,7 @@
 
 public abstract class Entity : IEquatable<Entity>
 {
-    public Guid Id { get; protected set; }
+    public Guid Id { get; set; }
 
     #region Operators
     public static bool operator ==(Entity a, Entity b)

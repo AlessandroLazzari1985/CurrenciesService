@@ -4,7 +4,7 @@ namespace Apsoft.Domain.FinancialData;
 
 public class CurrencyExchangeRate : Entity
 {
-    public CurrencyPair CurrencyPair { get; }
+    public CurrencyPair CurrencyPair { get; }       // Per leggere id corretto con automapper
     public decimal BidRate { get; }                 // Tasso di acquisto
     public decimal AskRate { get; }                 // Tasso di vendita
     public decimal ExchangeRate { get; }            // Tasso di cambio. Valore di riferimento o media tra Bid e Ask

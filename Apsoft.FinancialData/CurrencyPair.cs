@@ -9,7 +9,7 @@ public class CurrencyPair(Currency baseCurrency, Currency counterCurrency): Valu
 
     protected override IEnumerable<object> GetEqualityComponents()
     {
-        yield return BaseCurrency;
-        yield return CounterCurrency;
+        yield return BaseCurrency.AlphabeticCode;
+        yield return CounterCurrency.AlphabeticCode;
     }
 }

@@ -18,7 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BancaSempione.Presentation.Divise.Import\BancaSempione.Presentation.Divise.Import.csproj" />
-    <ProjectReference Include="..\BancaSempione.Presentation.WebApi\BancaSempione.Presentation.Divise.WebApi.csproj" />
+    <ProjectReference Include="..\BancaSempione.Presentation.Divise.WebApi\BancaSempione.Presentation.Divise.WebApi.csproj" />
   </ItemGroup>
 
   <ItemGroup>

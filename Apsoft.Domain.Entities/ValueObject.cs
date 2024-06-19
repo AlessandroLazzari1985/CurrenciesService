@@ -51,7 +51,7 @@ public abstract class ValueObject<T> : IEquatable<ValueObject<T>>
 
     #endregion
 
-    public static bool operator ==(ValueObject<T> a, ValueObject<T> b)
+    public static bool operator ==(ValueObject<T>? a, ValueObject<T>? b)
     {
         if (ReferenceEquals(a, null) && ReferenceEquals(b, null))
             return true;

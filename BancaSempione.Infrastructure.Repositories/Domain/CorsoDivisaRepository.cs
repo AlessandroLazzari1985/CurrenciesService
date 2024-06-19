@@ -19,4 +19,23 @@ public class CorsoDivisaRepository(CorsoDivisaRecordRepository recordRepository,
     {
         return mapper.Map<CorsoDivisaRecord>(entity);
     }
+
+    public List<CorsoDivisa> AsTemporal(long currentTimeUtc)
+    {
+        return recordRepository.Items
+            .Where(x => x.ValidFromUtc <= currentTimeUtc)
+            .Where(x => x.ValidToUtc > currentTimeUtc)
+            .AsEnumerable()
+            .Select(ToDomain)
+            .ToList();
+    }
+
+    public long LastLoadUtc()
+    {
+        if(recordRepository.Items.FirstOrDefault()== null)
+            return 0;
+
+        return recordRepository.Items.Max(x => x.ValidFromUtc);
+    }
+
 }

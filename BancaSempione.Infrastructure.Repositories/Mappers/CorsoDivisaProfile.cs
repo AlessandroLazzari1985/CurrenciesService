@@ -18,6 +18,7 @@ public class CorsoDivisaProfile : Profile
             .ForMember(dest => dest.PreviousExchangeRate, opt => opt.MapFrom(src => src.CurrencyExchangeRate.PreviousExchangeRate))
             .ForMember(dest => dest.ValidFromUtc, opt => opt.MapFrom(src => src.CurrencyExchangeRate.ValidPeriod.StartUtc))
             .ForMember(dest => dest.ValidToUtc, opt => opt.MapFrom(src => src.CurrencyExchangeRate.ValidPeriod.EndUtc))
+            .ForMember(dest => dest.TipoCorsoDivisa, opt => opt.MapFrom(src => src.TipoCorsoDivisa))
             ;
 
         CreateMap<CorsoDivisaRecord, CorsoDivisa>()
@@ -35,6 +36,9 @@ public class CorsoDivisaProfile : Profile
                     record.AskRate,
                     validPeriod,
                     record.PreviousExchangeRate);
+
+                // TODO. CHeidere a Daniele se questo è corretto!! Anche la set su id
+                currencyExchangeRate.Id = record.Id;
 
                 return new CorsoDivisa(currencyExchangeRate, record.TipoCorsoDivisa);
             });

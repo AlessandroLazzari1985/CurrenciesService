@@ -1,5 +1,6 @@
 ﻿NUOVA MIGRATION
 add-migration Initial	-Context DivisaContext -StartupProject BancaSempione.Presentation.Divise.WebApi -Project BancaSempione.Infrastructure.Database -Output Migrations
+add-migration Initial1	-Context DivisaContext -StartupProject BancaSempione.Presentation.Divise.WebApi -Project BancaSempione.Infrastructure.Database -Output Migrations
 
 
 UPGRADE

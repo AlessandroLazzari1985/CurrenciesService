@@ -5,11 +5,17 @@ services:
       context: .
       dockerfile: BancaSempione.Presentation.Divise.WebApi/Dockerfile
     ports:
-        - "8080:80"
-        - "8081:8081"
-#     networks:
-#         - webnet
-
-# networks:
-#   webnet:
-#     driver: bridge
+        - "5000:5000"
+        - "8080:8080"
+    networks:
+        - webnet
+  bancasempione.infrastructure.divise.database:
+    image: "mcr.microsoft.com/azure-sql-edge:latest"
+    environment:
+      - "ACCEPT_EULA=Y"
+      - "SA_PASSWORD=DemoRegistration12!"
+    ports:
+      - "1433:1433" #Per agevolare il debug
+networks:
+  webnet:
+    driver: bridge

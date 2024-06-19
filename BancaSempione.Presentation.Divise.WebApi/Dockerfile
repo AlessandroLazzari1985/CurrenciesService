@@ -40,7 +40,6 @@ RUN ls -la /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+EXPOSE 5000
 EXPOSE 8080
-EXPOSE 8081
-EXPOSE 80
 ENTRYPOINT ["dotnet", "BancaSempione.Presentation.Divise.WebApi.dll"]

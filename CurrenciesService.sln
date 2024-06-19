@@ -61,6 +61,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apsoft.Domain.Services", "A
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{353956EC-F7E6-4894-BBBE-44454C50AE3B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BancaSempione.Application.DTOs", "..\BancaSempione.Application.DTOs\BancaSempione.Application.DTOs.csproj", "{9724EF7B-953A-469C-BCA6-021A7578D9E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -159,6 +161,10 @@ Global
 		{353956EC-F7E6-4894-BBBE-44454C50AE3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{353956EC-F7E6-4894-BBBE-44454C50AE3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{353956EC-F7E6-4894-BBBE-44454C50AE3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9724EF7B-953A-469C-BCA6-021A7578D9E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9724EF7B-953A-469C-BCA6-021A7578D9E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9724EF7B-953A-469C-BCA6-021A7578D9E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9724EF7B-953A-469C-BCA6-021A7578D9E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -186,6 +192,7 @@ Global
 		{53A33252-5B0F-4B61-8402-249DBB75CEAE} = {D0BFF534-A238-4728-B9D2-A9F1ED84F2A1}
 		{99889CE0-E22E-4A33-BC21-BC5DE8708711} = {D0BFF534-A238-4728-B9D2-A9F1ED84F2A1}
 		{E2F3CFB0-1753-4826-9C85-C996C0247693} = {8EBE3472-CCFC-422C-A15A-64AF03679705}
+		{9724EF7B-953A-469C-BCA6-021A7578D9E7} = {644A7A2D-9022-4A2E-B906-EE4F80E6B74B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E88CA819-AC2E-441E-A896-F5EBEC5FE4D3}

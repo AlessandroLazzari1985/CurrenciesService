@@ -22,6 +22,7 @@
     <ProjectReference Include="..\Apsoft.Application.CurrencyProvider.CurrencyApi\Apsoft.Application.Provider.CurrencyApi.csproj" />
     <ProjectReference Include="..\Apsoft.Application.CurrencyProvider.Iso4217\Apsoft.Application.Provider.CurrencySix.csproj" />
     <ProjectReference Include="..\Apsoft.FinancialData\Apsoft.Domain.FinancialData.csproj" />
+    <ProjectReference Include="..\BancaSempione.Domain.Divise\BancaSempione.Domain.Divise.csproj" />
   </ItemGroup>
 
   <ItemGroup>

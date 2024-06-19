@@ -11,6 +11,15 @@ public class CorsoDivisaImporterTests
         var provider = ToolsContainer.ImportBatch.Development;
         var sut = provider.GetRequiredService<ICorsoDivisaImporter>();
 
-        sut.ImportaUltimi();
+        sut.Importa();
+    }
+
+    [Fact]
+    public void Cancella()
+    {
+        var provider = ToolsContainer.ImportBatch.Development;
+        var sut = provider.GetRequiredService<ICorsoDivisaImporter>();
+
+        sut.Cancella();
     }
 }

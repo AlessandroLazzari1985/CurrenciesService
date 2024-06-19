@@ -25,7 +25,8 @@ public abstract class DomainRepository<TRecord, TDomain>(Repository<TRecord> rec
 
     public void Update(IEnumerable<TDomain> list)
     {
-        recordRepository.Update(list.Select(ToRecord));
+        var records = list.Select(ToRecord);
+        recordRepository.Update(records);
     }
 
     public void Delete(IEnumerable<TDomain> list)

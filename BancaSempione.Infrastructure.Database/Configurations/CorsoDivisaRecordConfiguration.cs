@@ -17,9 +17,10 @@ public class CorsoDivisaRecordConfiguration : IEntityTypeConfiguration<CorsoDivi
         builder.Property(c => c.PreviousExchangeRate).HasPrecision(18, 6).IsRequired();
 
         builder.Property(c => c.ValidFromUtc).IsRequired();
-        builder.Property(c => c.ValidFromUtc).IsRequired();
+        builder.Property(c => c.ValidToUtc).IsRequired();
 
         // Creare un indice combinato su BaseCurrencyCode e CounterCurrencyCode per migliorare le performance delle query
+        builder.HasIndex(c => new { c.BaseCurrencyCode, c.CounterCurrencyCode, c.TipoCorsoDivisa, c.ValidFromUtc }).IsUnique();
         builder.HasIndex(c => new { c.BaseCurrencyCode, c.CounterCurrencyCode, c.TipoCorsoDivisa });
     }
 }

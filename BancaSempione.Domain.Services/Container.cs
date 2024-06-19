@@ -11,6 +11,7 @@ public static class Container
         services.AddScoped<IDivisaService, DivisaService>();
         services.AddScoped<IGruppoDivisaService, GruppoDivisaService>();
         services.AddScoped<ITipoDivisaService, TipoDivisaService>();
+        services.AddScoped<ICorsoDivisaService, CorsoDivisaService>();
 
         return services;
     }
