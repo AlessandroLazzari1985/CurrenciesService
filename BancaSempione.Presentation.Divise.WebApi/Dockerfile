@@ -10,12 +10,6 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["BancaSempione.Presentation.Divise.WebApi/BancaSempione.Presentation.Divise.WebApi.csproj", "BancaSempione.Presentation.Divise.WebApi/"]
-COPY ["Apsoft.Domain.Services/Apsoft.Domain.Services.csproj", "Apsoft.Domain.Services/"]
-COPY ["Apsoft.Domain.Repositories/Apsoft.Domain.Repositories.csproj", "Apsoft.Domain.Repositories/"]
-COPY ["Apsoft.FinancialData/Apsoft.Domain.FinancialData.csproj", "Apsoft.FinancialData/"]
-COPY ["Apsoft.Domain.Entities/Apsoft.Domain.Entities.csproj", "Apsoft.Domain.Entities/"]
-COPY ["Apsoft.Infrastructure.Database/Apsoft.Infrastructure.Database.csproj", "Apsoft.Infrastructure.Database/"]
-COPY ["Apsoft.Infrastructure.Repositories/Apsoft.Infrastructure.Repositories.csproj", "Apsoft.Infrastructure.Repositories/"]
 COPY ["BancaSempione.Application.Provider.Boss/BancaSempione.Application.Provider.Boss.csproj", "BancaSempione.Application.Provider.Boss/"]
 COPY ["BancaSempione.Domain.Repositories/BancaSempione.Domain.Repositories.csproj", "BancaSempione.Domain.Repositories/"]
 COPY ["BancaSempione.Domain.Boss/BancaSempione.Domain.Boss.csproj", "BancaSempione.Domain.Boss/"]

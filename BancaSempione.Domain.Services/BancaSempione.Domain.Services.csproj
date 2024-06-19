@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BancaSempione.Domain.Divise\BancaSempione.Domain.Divise.csproj" />
     <ProjectReference Include="..\BancaSempione.Domain.Repositories\BancaSempione.Domain.Repositories.csproj" />
   </ItemGroup>

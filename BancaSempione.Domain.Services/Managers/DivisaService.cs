@@ -1,5 +1,5 @@
-﻿using Apsoft.Domain.FinancialData;
-using BancaSempione.Domain.Divise;
+﻿using BancaSempione.Domain.Divise;
+using BancaSempione.Domain.Divise.Generic;
 using BancaSempione.Domain.Repositories;
 using BancaSempione.Domain.Services.Interfaces;
 

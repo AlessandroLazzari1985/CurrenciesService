@@ -1,6 +1,6 @@
-﻿using Apsoft.Domain.FinancialData;
-using BancaSempione.Domain.Boss;
+﻿using BancaSempione.Domain.Boss;
 using BancaSempione.Domain.Divise;
+using BancaSempione.Domain.Divise.Generic;
 using BancaSempione.Domain.Repositories;
 using BancaSempione.Domain.Services.Interfaces;
 using BancaSempione.Domain.Services.Managers;
@@ -63,8 +63,8 @@ public class CorsoDivisaImporter(
         var corsiDivisaAttuali = corsoDivisaService.CorsiDivisa.ToList();
             
         // Leggiamo i corsi attuali
-        var corsiInterniAttualiByKey = corsiDivisaAttuali.Where(x => x.TipoCorsoDivisa == TipoCorsoDivisa.CorsoInterno).ToDictionary(x => x.CurrencyExchangeRate.CurrencyPair);
-        var corsiRiferimentoAttualiByKey = corsiDivisaAttuali.Where(x => x.TipoCorsoDivisa == TipoCorsoDivisa.CorsoRiferimento).ToDictionary(x => x.CurrencyExchangeRate.CurrencyPair);
+        var corsiInterniAttualiByKey = corsiDivisaAttuali.Where(x => x.TipoCorsoDivisa == TipoCorsoDivisa.CorsoInterno).ToDictionary(x => x.CoppiaDivise);
+        var corsiRiferimentoAttualiByKey = corsiDivisaAttuali.Where(x => x.TipoCorsoDivisa == TipoCorsoDivisa.CorsoRiferimento).ToDictionary(x => x.CoppiaDivise);
 
         // Calcoliamo i nuovi
         var processatiCorsiInterni = ultimiCorsoDivisaBoss.Select(x => corsoDivisaBuilder.BuildCorsoInterno(x, divisaService.DiviseById, divisaService.DivisaIstituto, corsiInterniAttualiByKey)).ToList();
@@ -94,14 +94,14 @@ public class CorsoDivisaImporter(
             var actual = attualiByKey[key];
             var newItem = nuovibyKey[key];
 
-            var compareResult = _compareLogic.Compare(actual.CurrencyExchangeRate, newItem.CurrencyExchangeRate);
+            var compareResult = _compareLogic.Compare(actual, newItem);
 
             if (compareResult.AreEqual)
                 return;
 
-            actual.CurrencyExchangeRate.ValidPeriod = new Period(
-                actual.CurrencyExchangeRate.ValidPeriod.StartUtc,
-                newItem.CurrencyExchangeRate.ValidPeriod.StartUtc);
+            actual.ValidPeriod = new Period(
+                actual.ValidPeriod.StartUtc,
+                newItem.ValidPeriod.StartUtc);
 
             newItems.Add(newItem);
             oldItemsToUpdate.Add(actual);

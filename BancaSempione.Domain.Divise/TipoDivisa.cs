@@ -1,9 +1,7 @@
-﻿using Apsoft.Domain.Entities;
-
-namespace BancaSempione.Domain.Divise;
+﻿namespace BancaSempione.Domain.Divise;
 
 // TAB N051
-public class TipoDivisa : ValueObject<TipoDivisa>
+public class TipoDivisa : Core.ValueObject<TipoDivisa>
 {
     public required string Id { get; set; }
     public string Text { get; set; } = String.Empty;

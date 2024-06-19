@@ -1,4 +1,4 @@
-﻿namespace Apsoft.Domain.Repositories.Core;
+﻿namespace BancaSempione.Domain.Repositories.Core;
 
 public interface ICommandRepository<in T>
     where T : class

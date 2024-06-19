@@ -1,6 +1,6 @@
-﻿using Apsoft.Domain.FinancialData;
+﻿using BancaSempione.Domain.Divise.Generic;
 
-namespace Apsoft.Domain.Services.Interfaces;
+namespace BancaSempione.Domain.Services.Interfaces;
 
 public interface ICountryService
 {

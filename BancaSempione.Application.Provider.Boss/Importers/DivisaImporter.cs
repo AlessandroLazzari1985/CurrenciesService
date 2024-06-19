@@ -1,9 +1,9 @@
-﻿using Apsoft.Domain.Entities;
-using Apsoft.Domain.FinancialData;
-using Apsoft.Domain.Repositories;
-using BancaSempione.Domain.Boss;
+﻿using BancaSempione.Domain.Boss;
 using BancaSempione.Domain.Divise;
+using BancaSempione.Domain.Divise.Core;
+using BancaSempione.Domain.Divise.Generic;
 using BancaSempione.Domain.Repositories;
+using BancaSempione.Domain.Repositories.Generic;
 using CSharpFunctionalExtensions;
 using Microsoft.Extensions.Logging;
 using System.Globalization;

@@ -1,6 +1,6 @@
-﻿using Apsoft.Domain.Entities;
+﻿using BancaSempione.Domain.Divise.Core;
 
-namespace Apsoft.Domain.FinancialData;
+namespace BancaSempione.Domain.Divise.Generic;
 
 
 // ReSharper disable InconsistentNaming

@@ -1,8 +1,8 @@
-﻿using Apsoft.Domain.FinancialData;
-using Apsoft.Domain.Repositories;
-using Apsoft.Domain.Services.Interfaces;
+﻿using BancaSempione.Domain.Divise.Generic;
+using BancaSempione.Domain.Repositories.Generic;
+using BancaSempione.Domain.Services.Interfaces;
 
-namespace Apsoft.Domain.Services.Managers;
+namespace BancaSempione.Domain.Services.Managers;
 
 public class CurrencyService(ICurrencyRepository repository) : ICurrencyService
 {

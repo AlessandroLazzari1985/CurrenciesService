@@ -1,6 +1,6 @@
-﻿using Apsoft.Domain.Repositories.Core;
+﻿using BancaSempione.Domain.Repositories.Core;
 
-namespace Apsoft.Infrastructure.Repositories.Core;
+namespace BancaSempione.Infrastructure.Repositories.Core;
 
 // TODO: Da valutare se fare il mapping con Automapper o con un IMapper
 // Questa classe è astratta per permettere di definire i metodi ToDomain e ToRecord

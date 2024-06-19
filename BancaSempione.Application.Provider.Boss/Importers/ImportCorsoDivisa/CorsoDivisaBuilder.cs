@@ -1,6 +1,6 @@
-﻿using Apsoft.Domain.FinancialData;
-using BancaSempione.Domain.Boss;
+﻿using BancaSempione.Domain.Boss;
 using BancaSempione.Domain.Divise;
+using BancaSempione.Domain.Divise.Generic;
 using CSharpFunctionalExtensions;
 
 namespace BancaSempione.Application.Provider.Boss.Importers.ImportCorsoDivisa;
@@ -11,13 +11,13 @@ public interface ICorsoDivisaBuilder
         CorsoDivisaBoss stage,
         Dictionary<int, Divisa> divise,
         Divisa divisaIstituto,
-        Dictionary<CurrencyPair, CorsoDivisa> ultimiCorsiInterni);
+        Dictionary<CoppiaDivise, CorsoDivisa> ultimiCorsiInterni);
 
     Result<CorsoDivisa> BuildCorsoRiferimento(
         CorsoDivisaBoss stage,
         Dictionary<int, Divisa> divise,
         Divisa divisaIstituto,
-        Dictionary<CurrencyPair, CorsoDivisa> ultimiCorsiRiferimento);
+        Dictionary<CoppiaDivise, CorsoDivisa> ultimiCorsiRiferimento);
 }
 
 public class CorsoDivisaBuilder : ICorsoDivisaBuilder
@@ -26,23 +26,21 @@ public class CorsoDivisaBuilder : ICorsoDivisaBuilder
         CorsoDivisaBoss stage,
         Dictionary<int, Divisa> divise,
         Divisa divisaIstituto,
-        Dictionary<CurrencyPair, CorsoDivisa> ultimiCorsiInterni)
+        Dictionary<CoppiaDivise, CorsoDivisa> ultimiCorsiInterni)
     {
         var divisaResult = GetDivisa(stage, divise);
         if (divisaResult.IsFailure)
             return Result.Failure<CorsoDivisa>(divisaResult.Error);
 
         var divisa = divisaResult.Value;
-        var corsoDivisaKey = new CurrencyPair(divisa, divisaIstituto);
+        var corsoDivisaKey = new CoppiaDivise(divisa, divisaIstituto);
 
         var lastExchageRate = GetLastExchageRate(ultimiCorsiInterni, corsoDivisaKey);
         var validPeriod = new Period(stage.DATELA, DateTime.MaxValue);
 
         var corsoInterno = GetCorsoInterno(stage, divisa);
-        var currencyExchangeRate = new CurrencyExchangeRate(corsoDivisaKey, corsoInterno, corsoInterno, validPeriod, lastExchageRate);
 
-
-        var result = new CorsoDivisa(currencyExchangeRate, TipoCorsoDivisa.CorsoInterno);
+        var result = new CorsoDivisa(corsoDivisaKey, corsoInterno, corsoInterno, validPeriod, lastExchageRate, TipoCorsoDivisa.CorsoInterno);
 
         return result;
     }
@@ -51,7 +49,7 @@ public class CorsoDivisaBuilder : ICorsoDivisaBuilder
         CorsoDivisaBoss stage,
         Dictionary<int, Divisa> divise,
         Divisa divisaIstituto,
-        Dictionary<CurrencyPair, CorsoDivisa> ultimiCorsiRiferimento)
+        Dictionary<CoppiaDivise, CorsoDivisa> ultimiCorsiRiferimento)
     {
         var divisaResult = GetDivisa(stage, divise);
         if (divisaResult.IsFailure)
@@ -59,15 +57,14 @@ public class CorsoDivisaBuilder : ICorsoDivisaBuilder
 
         var divisa = divisaResult.Value;
 
-        var corsoDivisaKey = new CurrencyPair(divisa, divisaIstituto);
+        var corsoDivisaKey = new CoppiaDivise(divisa, divisaIstituto);
 
         var lastExchageRate = GetLastExchageRate(ultimiCorsiRiferimento, corsoDivisaKey);
 
         var validPeriod = new Period(stage.DATELA, DateTime.MaxValue);
 
         var corsoRiferimento = GetCorsoRiferimento(stage, divisa);
-        var currencyExchangeRate = new CurrencyExchangeRate(corsoDivisaKey, corsoRiferimento, corsoRiferimento, validPeriod, lastExchageRate);
-        var result = new CorsoDivisa(currencyExchangeRate, TipoCorsoDivisa.CorsoRiferimento);
+        var result = new CorsoDivisa(corsoDivisaKey, corsoRiferimento, corsoRiferimento, validPeriod, lastExchageRate, TipoCorsoDivisa.CorsoRiferimento);
 
         return result;
     }
@@ -94,10 +91,10 @@ public class CorsoDivisaBuilder : ICorsoDivisaBuilder
         return Result.Success(divisa);
     }
 
-    private static decimal GetLastExchageRate(Dictionary<CurrencyPair, CorsoDivisa> ultimiCorsiRiferimento, CurrencyPair corsoDivisaKey)
+    private static decimal GetLastExchageRate(Dictionary<CoppiaDivise, CorsoDivisa> ultimiCorsiRiferimento, CoppiaDivise corsoDivisaKey)
     {
         ultimiCorsiRiferimento.TryGetValue(corsoDivisaKey, out var actualCorsoDivisa);
-        var lastExchageRate = actualCorsoDivisa?.CurrencyExchangeRate.ExchangeRate ?? 0m;
+        var lastExchageRate = actualCorsoDivisa?.ExchangeRate ?? 0m;
         return lastExchageRate;
     }
 }

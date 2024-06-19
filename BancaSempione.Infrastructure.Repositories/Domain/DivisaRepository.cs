@@ -1,8 +1,8 @@
-﻿using Apsoft.Infrastructure.Repositories.Core;
-using AutoMapper;
+﻿using AutoMapper;
 using BancaSempione.Domain.Divise;
 using BancaSempione.Domain.Repositories;
 using BancaSempione.Infrastructure.Database.Model;
+using BancaSempione.Infrastructure.Repositories.Core;
 using BancaSempione.Infrastructure.Repositories.Records;
 
 namespace BancaSempione.Infrastructure.Repositories.Domain;

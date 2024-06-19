@@ -19,7 +19,7 @@ public class CorsoDivisaController(ICorsoDivisaService corsoDivisaService, IMapp
     [HttpGet, EnableQuery]
     public ActionResult<CorsoDivisaDto> Get([FromRoute] Guid key)
     {
-        var item = corsoDivisaService.CorsiDivisa.SingleOrDefault(d => d.CurrencyExchangeRate.Id.Equals(key));
+        var item = corsoDivisaService.CorsiDivisa.SingleOrDefault(d => d.Id.Equals(key));
 
         if (item == null)
         {

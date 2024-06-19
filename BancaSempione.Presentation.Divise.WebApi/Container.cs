@@ -1,8 +1,4 @@
-﻿using Apsoft.Domain.Repositories;
-using Apsoft.Domain.Services;
-using Apsoft.Infrastructure.Database;
-using Apsoft.Infrastructure.Repositories;
-using BancaSempione.Application.DTOs;
+﻿using BancaSempione.Application.DTOs;
 using BancaSempione.Application.Provider.Boss;
 using BancaSempione.Domain.Services;
 using BancaSempione.Infrastructure.Cache;
@@ -24,7 +20,7 @@ public static class Container
 
             // Domain ------------------------------------------------------------
             // Apsoft
-            .Register_Apsoft_Domain_Services()
+            // .Register_Apsoft_Domain_Services()
 
             // Sempione
             .Register_BancaSempione_Domain_Services()
@@ -38,8 +34,8 @@ public static class Container
             // Infrastructure ------------------------------------------------------------
 
             // Apsoft
-            .Register_Apsoft_Infrastructure_Database(appSettings.ConnectionStrings.DefaultConnection)
-            .Register_Apsoft_Infrastructure_Repositories()
+            // .Register_Apsoft_Infrastructure_Database(appSettings.ConnectionStrings.DefaultConnection)
+            // .Register_Apsoft_Infrastructure_Repositories()
 
             // BancaSempione
             .Register_BancaSempione_Infrastructure_Cache()

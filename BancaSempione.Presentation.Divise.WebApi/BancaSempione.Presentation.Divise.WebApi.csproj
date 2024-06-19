@@ -26,9 +26,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\BancaSempione.Application.DTOs\BancaSempione.Application.DTOs.csproj" />
-    <ProjectReference Include="..\Apsoft.Domain.Services\Apsoft.Domain.Services.csproj" />
-    <ProjectReference Include="..\Apsoft.Infrastructure.Database\Apsoft.Infrastructure.Database.csproj" />
-    <ProjectReference Include="..\Apsoft.Infrastructure.Repositories\Apsoft.Infrastructure.Repositories.csproj" />
     <ProjectReference Include="..\BancaSempione.Application.Provider.Boss\BancaSempione.Application.Provider.Boss.csproj" />
     <ProjectReference Include="..\BancaSempione.Infrastructure.Cache\BancaSempione.Infrastructure.Cache.csproj" />
     <ProjectReference Include="..\BancaSempione.Infrastructure.Database\BancaSempione.Infrastructure.Database.csproj" />

@@ -1,6 +1,5 @@
-﻿using Apsoft.Domain.FinancialData;
-using Apsoft.Domain.Repositories.Core;
-using BancaSempione.Domain.Divise;
+﻿using BancaSempione.Domain.Divise;
+using BancaSempione.Domain.Repositories.Core;
 
 namespace BancaSempione.Domain.Repositories;
 
@@ -10,7 +9,6 @@ public interface ICorsoDivisaRepository : IRepository<CorsoDivisa>
     long LastLoadUtc();
 }
 
-public interface ICurrencyPairRepository : IRepository<CurrencyPair>;
 public interface IDivisaRepository : IRepository<Divisa>;
 public interface IGruppoDivisaRepository : IRepository<GruppoDivisa>;
 public interface ILogRepository : IRepository<SerilogRow>;

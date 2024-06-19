@@ -1,4 +1,4 @@
-﻿using Apsoft.Domain.FinancialData;
+﻿using BancaSempione.Domain.Divise.Core;
 
 namespace BancaSempione.Domain.Divise;
 
@@ -13,12 +13,27 @@ public class Divisa(
     bool isDivisaIn,
     decimal taglio,
     int gruppoDivisaId,
-    string tipoDivisaId)
-    : Currency(alphabeticCode, numericCode, name, symbol, decimalDigits, rounding)
+    string tipoDivisaId) : ValueObject<Divisa>
 {
+    #region Campi ISO4217
+    public string AlphabeticCode { get; } = alphabeticCode;
+    public int NumericCode { get; } = numericCode;
+    public string? Name { get; } = name;
+    public string? Symbol { get; } = symbol;
+    public int DecimalDigits { get; } = decimalDigits;
+    public int Rounding { get; } = rounding;
+    #endregion
+
+    #region Campi personalizzati Sempione
     public int DivisaId { get; } = divisaId;
     public bool IsDivisaIn { get; } = isDivisaIn;
     public decimal Taglio { get; } = taglio;
     public int GruppoDivisaId { get; } = gruppoDivisaId;
     public string TipoDivisaId { get; } = tipoDivisaId;
+
+    protected override IEnumerable<object> GetEqualityComponents()
+    {
+        yield return DivisaId;
+    }
+    #endregion
 }

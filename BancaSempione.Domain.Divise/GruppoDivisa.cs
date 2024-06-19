@@ -1,8 +1,6 @@
-﻿using Apsoft.Domain.Entities;
+﻿namespace BancaSempione.Domain.Divise;
 
-namespace BancaSempione.Domain.Divise;
-
-public class GruppoDivisa: ValueObject<GruppoDivisa>
+public class GruppoDivisa: Core.ValueObject<GruppoDivisa>
 {
     public int Id { get; set; }
     public string Text { get; set; } = string.Empty;

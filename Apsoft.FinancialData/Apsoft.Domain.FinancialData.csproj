@@ -6,8 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Apsoft.Domain.Entities\Apsoft.Domain.Entities.csproj" />
-  </ItemGroup>
-
 </Project>

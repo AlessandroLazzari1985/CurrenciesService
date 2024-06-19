@@ -1,12 +1,10 @@
-﻿using Apsoft.Domain.FinancialData;
+﻿namespace BancaSempione.Domain.Divise;
 
-namespace BancaSempione.Domain.Divise;
-
-public class CorsoDivisaKey(CurrencyPair currencyPair, TipoCorsoDivisa tipoCorsoDivisa) : IEquatable<CorsoDivisaKey>
+public class CorsoDivisaKey(CoppiaDivise currencyPair, TipoCorsoDivisa tipoCorsoDivisa) : IEquatable<CorsoDivisaKey>
 {
-    public CorsoDivisaKey(CorsoDivisa corsoDivisa) : this(corsoDivisa.CurrencyExchangeRate.CurrencyPair, corsoDivisa.TipoCorsoDivisa) { }
+    public CorsoDivisaKey(CorsoDivisa corsoDivisa) : this(corsoDivisa.CoppiaDivise, corsoDivisa.TipoCorsoDivisa) { }
 
-    public CurrencyPair CurrencyPair { get; } = currencyPair;
+    public CoppiaDivise CurrencyPair { get; } = currencyPair;
     public TipoCorsoDivisa TipoCorsoDivisa { get; } = tipoCorsoDivisa;
 
     public bool Equals(CorsoDivisaKey? other)

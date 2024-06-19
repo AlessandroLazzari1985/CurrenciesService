@@ -20,12 +20,8 @@
 
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Apsoft.FinancialData\Apsoft.Domain.FinancialData.csproj" />
-	</ItemGroup>
-
-
-	<ItemGroup>
 	  <Folder Include="Configurations\" />
+	  <Folder Include="Model\" />
 	</ItemGroup>
 
 </Project>

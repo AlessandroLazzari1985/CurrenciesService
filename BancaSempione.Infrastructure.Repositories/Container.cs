@@ -1,4 +1,5 @@
 ﻿using BancaSempione.Domain.Repositories;
+using BancaSempione.Domain.Repositories.Generic;
 using BancaSempione.Infrastructure.Repositories.Boss;
 using BancaSempione.Infrastructure.Repositories.Domain;
 using BancaSempione.Infrastructure.Repositories.Mappers;
@@ -11,6 +12,10 @@ public static class Container
 {
     public static IServiceCollection Register_BancaSempione_Infrastructure_Repositories(this IServiceCollection services)
     {
+        // Mappers
+        services.AddScoped<ICurrencyRepository, CurrencyRepository>();
+        services.AddScoped<ICountryRepository, CountryRepository>();
+
         // Per usi interni a questo progetto
         services.AddScoped<DivisaRecordRepository>();
         services.AddScoped<CorsoDivisaRecordRepository>();

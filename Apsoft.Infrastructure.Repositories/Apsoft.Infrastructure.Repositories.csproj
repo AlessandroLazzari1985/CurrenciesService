@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Apsoft.Domain.Repositories\Apsoft.Domain.Repositories.csproj" />
     <ProjectReference Include="..\Apsoft.Infrastructure.Database\Apsoft.Infrastructure.Database.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Domain\" />
     <Folder Include="Mappers\" />
   </ItemGroup>
 

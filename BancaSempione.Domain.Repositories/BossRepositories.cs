@@ -1,5 +1,5 @@
-﻿using Apsoft.Domain.Repositories.Core;
-using BancaSempione.Domain.Boss;
+﻿using BancaSempione.Domain.Boss;
+using BancaSempione.Domain.Repositories.Core;
 
 namespace BancaSempione.Domain.Repositories;
 

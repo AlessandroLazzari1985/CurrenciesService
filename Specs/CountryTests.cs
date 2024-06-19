@@ -1,4 +1,4 @@
-﻿using Apsoft.Domain.FinancialData;
+﻿using BancaSempione.Domain.Divise.Generic;
 
 namespace Specs;
 
