@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\BancaSempione.Application.DTOs\BancaSempione.Application.DTOs.csproj" />
+    <ProjectReference Include="..\BancaSempione.Application.DTOs\BancaSempione.Application.DTOs.csproj" />
     <ProjectReference Include="..\BancaSempione.Application.Provider.Boss\BancaSempione.Application.Provider.Boss.csproj" />
     <ProjectReference Include="..\BancaSempione.Infrastructure.Cache\BancaSempione.Infrastructure.Cache.csproj" />
     <ProjectReference Include="..\BancaSempione.Infrastructure.Database\BancaSempione.Infrastructure.Database.csproj" />

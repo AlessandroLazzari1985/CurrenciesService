@@ -12,7 +12,8 @@ public class CorsoDivisaController(ICorsoDivisaService corsoDivisaService, IMapp
     [HttpGet, EnableQuery]
     public List<CorsoDivisaDto> Get()
     {
-        var result = corsoDivisaService.CorsiDivisa.Select(mapper.Map<CorsoDivisaDto>).ToList();
+        var corsiDivisa = corsoDivisaService.CorsiDivisa.ToList();
+        var result = corsiDivisa.Select(mapper.Map<CorsoDivisaDto>).ToList();
         return result;
     }
 

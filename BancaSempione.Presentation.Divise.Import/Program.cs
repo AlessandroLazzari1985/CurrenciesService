@@ -1,5 +1,7 @@
-﻿using BancaSempione.Application.Provider.Boss;
-using BancaSempione.Application.Provider.Boss.Importers;
+﻿using BancaSempione.Application.DTOs;
+using BancaSempione.Application.Provider.Boss;
+using BancaSempione.Domain.Services;
+using BancaSempione.Infrastructure.Cache;
 using BancaSempione.Infrastructure.Database;
 using BancaSempione.Infrastructure.Database.Logging;
 using BancaSempione.Infrastructure.Logging;
@@ -16,11 +18,16 @@ var appSettings = configurationRoot.Get<ImportBatchAppSettings>();
 var serilogSqlServer = SerilogSqlServer.BuildWith(appSettings!.ConnectionStrings.DefaultConnection);
 
 var serviceCollection = new ServiceCollection()
+    .AddSingleton(appSettings)
 
-    // Application
+    .Register_BancaSempione_Domain_Services()
+
+            // Application
     .Register_BancaSempione_Application_Provider_Boss()
+    .Register_BancaSempione_Application_DTOs()
 
-    // Infrastructure
+            // Infrastructure
+    .Register_BancaSempione_Infrastructure_Cache()
     .Register_BancaSempione_Infrastructure_Repositories()
     .Register_BancaSempione_Infrastructure_Logging(serilogSqlServer, appSettings.SerilogMails)
     .Register_BancaSempione_Infrastructure_Database(appSettings.ConnectionStrings.DefaultConnection, appSettings.ConnectionStrings.BossConnection);
@@ -28,7 +35,7 @@ var serviceCollection = new ServiceCollection()
 
 var provider = serviceCollection.BuildServiceProvider();
 
+provider.GetRequiredService<IBossImporter>().Importa();
 
-provider.GetRequiredService<IDivisaImporter>().Importa();
 
 

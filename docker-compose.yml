@@ -1,21 +1,25 @@
 services:
   bancasempione.presentation.divise.webapi:
-    image: ${DOCKER_REGISTRY-}bancasempionepresentationdivisewebapi
+    image: ${DOCKER_REGISTRY-}bancasempione.presentation.divise.webapi
     build:
       context: .
       dockerfile: BancaSempione.Presentation.Divise.WebApi/Dockerfile
     ports:
         - "5000:5000"
         - "8080:8080"
+        - "44398:44398"
     networks:
         - webnet
-  bancasempione.infrastructure.divise.database:
-    image: "mcr.microsoft.com/azure-sql-edge:latest"
+  sqlserver:
+    # image: "mcr.microsoft.com/mssql/server:2019-latest-windowsservercore"
+    image: "mcr.microsoft.com/mssql/server:2019-latest"
     environment:
-      - "ACCEPT_EULA=Y"
-      - "SA_PASSWORD=DemoRegistration12!"
+      SA_PASSWORD: "DemoRegistration12!"
+      ACCEPT_EULA: "Y"
     ports:
-      - "1433:1433" #Per agevolare il debug
+      - "1433:11433" #Per agevolare il debug
+    networks:
+      - webnet
 networks:
   webnet:
     driver: bridge

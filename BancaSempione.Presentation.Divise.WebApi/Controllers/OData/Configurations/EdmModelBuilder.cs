@@ -18,7 +18,7 @@ namespace BancaSempione.Presentation.Divise.WebApi.Controllers.OData.Configurati
         {
             var modelBuilder = new ODataConventionModelBuilder();
             modelBuilder.EntitySet<DivisaDto>(nameof(Divisa)).EntityType.HasKey(x => x.DivisaId);
-            modelBuilder.EntitySet<CorsoDivisaDto>(nameof(CorsoDivisa));
+            modelBuilder.EntitySet<CorsoDivisaDto>(nameof(CorsoDivisa)).EntityType.HasKey(x => x.CorsoDivisaId);
             modelBuilder.EntitySet<GruppoDivisa>(nameof(GruppoDivisa));
             modelBuilder.EntitySet<TipoDivisa>(nameof(TipoDivisa));
 

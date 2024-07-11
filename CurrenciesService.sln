@@ -43,7 +43,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BancaSempione.Infrastructur
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{353956EC-F7E6-4894-BBBE-44454C50AE3B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BancaSempione.Application.DTOs", "..\BancaSempione.Application.DTOs\BancaSempione.Application.DTOs.csproj", "{9724EF7B-953A-469C-BCA6-021A7578D9E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BancaSempione.Application.DTOs", "BancaSempione.Application.DTOs\BancaSempione.Application.DTOs.csproj", "{9724EF7B-953A-469C-BCA6-021A7578D9E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
